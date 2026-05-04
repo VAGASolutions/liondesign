@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SiteBoost - Free website analyzer for SEO, security, performance, and reach optimization. Instantly audit any website." />
+  <meta name="keywords" content="SEO checker, website analyzer, security audit, website performance, site optimization" />
+  <meta property="og:title" content="SiteBoost — Website Analyzer & Optimizer" />
+  <meta property="og:description" content="Audit any website for SEO, security, performance and get actionable tips to boost your online reach." />
+  <meta property="og:type" content="website" />
+  <title>SiteBoost — Website Analyzer & Optimizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">SiteBoost</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#analyzer">Analyzer</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <button class="btn btn-primary nav-cta" onclick="scrollToAnalyzer()">Analyze Free</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#features" onclick="closeMobile()">Features</a>
+      <a href="#analyzer" onclick="closeMobile()">Analyzer</a>
+      <a href="#how-it-works" onclick="closeMobile()">How it works</a>
+      <a href="#faq" onclick="closeMobile()">FAQ</a>
+      <button class="btn btn-primary" onclick="scrollToAnalyzer();closeMobile()">Analyze Free</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Free Website Audit Tool — No signup required
+      </div>
+      <h1 class="hero-title">
+        Make Your Website<br />
+        <span class="gradient-text">Unstoppable</span>
+      </h1>
+      <p class="hero-subtitle">
+        Analyze any website's SEO, security, performance, and reach in seconds.
+        Get a full audit report with actionable recommendations — completely free.
+      </p>
+      <div class="hero-input-group" id="heroForm">
+        <div class="input-wrapper">
+          <span class="input-icon">🌐</span>
+          <input
+            type="url"
+            id="heroUrl"
+            class="url-input"
+            placeholder="https://yourwebsite.com"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <button class="btn btn-hero" id="heroBtn" onclick="startAnalysis()">
+          <span class="btn-text">Analyze Now</span>
+          <span class="btn-icon">→</span>
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>4</strong> audit categories
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>30+</strong> checks run
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>100%</strong> free
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to learn more</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What we check</span>
+        <h2 class="section-title">Everything your website needs to dominate</h2>
+        <p class="section-subtitle">Four critical areas analyzed automatically with expert recommendations</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-category="seo">
+          <div class="feature-icon">🔍</div>
+          <h3>SEO Optimization</h3>
+          <p>Audit meta tags, title, descriptions, heading hierarchy, canonical URLs, schema markup, Open Graph and more.</p>
+          <ul class="feature-list">
+            <li>Title &amp; meta description quality</li>
+            <li>Heading structure (H1–H6)</li>
+            <li>Image alt attributes</li>
+            <li>Canonical &amp; robots tags</li>
+            <li>Open Graph / Twitter Cards</li>
+            <li>Structured data presence</li>
+          </ul>
+        </div>
+        <div class="feature-card" data-category="security">
+          <div class="feature-icon">🔒</div>
+          <h3>Security Scan</h3>
+          <p>Check for HTTPS enforcement, security headers, mixed content, and common vulnerabilities that damage trust.</p>
+          <ul class="feature-list">
+            <li>HTTPS &amp; SSL certificate</li>
+            <li>Security headers (CSP, HSTS…)</li>
+            <li>Mixed content detection</li>
+            <li>Dangerous inline scripts</li>
+            <li>Third-party script audit</li>
+            <li>Cookie security flags</li>
+          </ul>
+        </div>
+        <div class="feature-card" data-category="performance">
+          <div class="feature-icon">⚡</div>
+          <h3>Performance</h3>
+          <p>Evaluate load speed signals, resource hints, compression, caching policies, and Core Web Vitals readiness.</p>
+          <ul class="feature-list">
+            <li>Resource compression hints</li>
+            <li>Image optimization</li>
+            <li>Script &amp; CSS loading</li>
+            <li>Viewport configuration</li>
+            <li>Preload / prefetch hints</li>
+            <li>Core Web Vitals checklist</li>
+          </ul>
+        </div>
+        <div class="feature-card" data-category="reach">
+          <div class="feature-icon">📈</div>
+          <h3>Reach &amp; Visibility</h3>
+          <p>Evaluate social sharing, sitemap, robots.txt, language targeting, and factors that drive more organic traffic.</p>
+          <ul class="feature-list">
+            <li>Sitemap.xml presence</li>
+            <li>Robots.txt configuration</li>
+            <li>Social meta (OG, Twitter)</li>
+            <li>Language &amp; hreflang</li>
+            <li>Internal linking signals</li>
+            <li>Favicon &amp; branding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYZER TOOL -->
+  <section class="analyzer-section" id="analyzer">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Free tool</span>
+        <h2 class="section-title">Analyze your website now</h2>
+        <p class="section-subtitle">Enter any URL and get a detailed report in seconds</p>
+      </div>
+
+      <div class="analyzer-box">
+        <div class="analyzer-input-row">
+          <div class="input-wrapper large">
+            <span class="input-icon">🌐</span>
+            <input
+              type="url"
+              id="analyzerUrl"
+              class="url-input large"
+              placeholder="https://example.com"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <button class="btn btn-primary btn-analyze" id="analyzeBtn" onclick="startAnalysis('analyzer')">
+            Run Full Audit
+          </button>
+        </div>
+        <div class="analyzer-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="chkSeo" checked /> SEO
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="chkSecurity" checked /> Security
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="chkPerformance" checked /> Performance
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="chkReach" checked /> Reach
+          </label>
+        </div>
+      </div>
+
+      <!-- LOADING STATE -->
+      <div class="loading-state" id="loadingState" style="display:none;">
+        <div class="loading-animation">
+          <div class="loading-ring"></div>
+          <div class="loading-ring ring-2"></div>
+          <div class="loading-ring ring-3"></div>
+        </div>
+        <div class="loading-steps" id="loadingSteps">
+          <div class="loading-step active" id="step1">🌐 Fetching page content...</div>
+          <div class="loading-step" id="step2">🔍 Running SEO audit...</div>
+          <div class="loading-step" id="step3">🔒 Scanning security headers...</div>
+          <div class="loading-step" id="step4">⚡ Checking performance signals...</div>
+          <div class="loading-step" id="step5">📈 Evaluating reach factors...</div>
+          <div class="loading-step" id="step6">📋 Generating report...</div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="results" id="results" style="display:none;">
+
+        <!-- Score Overview -->
+        <div class="score-overview" id="scoreOverview">
+          <div class="score-header">
+            <div class="analyzed-url" id="analyzedUrl"></div>
+            <button class="btn btn-outline btn-sm" onclick="resetAnalysis()">↩ New Analysis</button>
+          </div>
+          <div class="scores-grid">
+            <div class="score-card" id="scoreCardSeo">
+              <div class="score-circle" id="circSeo">
+                <svg viewBox="0 0 120 120">
+                  <circle class="circle-bg" cx="60" cy="60" r="50"/>
+                  <circle class="circle-fill seo-stroke" id="fillSeo" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+                </svg>
+                <div class="score-number" id="numSeo">—</div>
+              </div>
+              <div class="score-label">SEO</div>
+              <div class="score-grade" id="gradeSeo"></div>
+            </div>
+            <div class="score-card" id="scoreCardSec">
+              <div class="score-circle" id="circSec">
+                <svg viewBox="0 0 120 120">
+                  <circle class="circle-bg" cx="60" cy="60" r="50"/>
+                  <circle class="circle-fill sec-stroke" id="fillSec" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+                </svg>
+                <div class="score-number" id="numSec">—</div>
+              </div>
+              <div class="score-label">Security</div>
+              <div class="score-grade" id="gradeSec"></div>
+            </div>
+            <div class="score-card" id="scoreCardPerf">
+              <div class="score-circle" id="circPerf">
+                <svg viewBox="0 0 120 120">
+                  <circle class="circle-bg" cx="60" cy="60" r="50"/>
+                  <circle class="circle-fill perf-stroke" id="fillPerf" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+                </svg>
+                <div class="score-number" id="numPerf">—</div>
+              </div>
+              <div class="score-label">Performance</div>
+              <div class="score-grade" id="gradePerf"></div>
+            </div>
+            <div class="score-card" id="scoreCardReach">
+              <div class="score-circle" id="circReach">
+                <svg viewBox="0 0 120 120">
+                  <circle class="circle-bg" cx="60" cy="60" r="50"/>
+                  <circle class="circle-fill reach-stroke" id="fillReach" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+                </svg>
+                <div class="score-number" id="numReach">—</div>
+              </div>
+              <div class="score-label">Reach</div>
+              <div class="score-grade" id="gradeReach"></div>
+            </div>
+          </div>
+          <div class="overall-score-bar">
+            <div class="overall-label">
+              <span>Overall Score</span>
+              <span id="overallScore" class="overall-number">—</span>
+            </div>
+            <div class="overall-track">
+              <div class="overall-fill" id="overallFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="result-tabs">
+          <button class="tab-btn active" onclick="showTab('seo', this)">🔍 SEO</button>
+          <button class="tab-btn" onclick="showTab('security', this)">🔒 Security</button>
+          <button class="tab-btn" onclick="showTab('performance', this)">⚡ Performance</button>
+          <button class="tab-btn" onclick="showTab('reach', this)">📈 Reach</button>
+        </div>
+
+        <!-- SEO Tab -->
+        <div class="tab-content active" id="tab-seo">
+          <div class="checks-list" id="seoChecks"></div>
+        </div>
+
+        <!-- Security Tab -->
+        <div class="tab-content" id="tab-security">
+          <div class="checks-list" id="securityChecks"></div>
+        </div>
+
+        <!-- Performance Tab -->
+        <div class="tab-content" id="tab-performance">
+          <div class="checks-list" id="performanceChecks"></div>
+        </div>
+
+        <!-- Reach Tab -->
+        <div class="tab-content" id="tab-reach">
+          <div class="checks-list" id="reachChecks"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Process</span>
+        <h2 class="section-title">How SiteBoost works</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">🌐</div>
+          <h3>Enter your URL</h3>
+          <p>Paste any website URL — yours, a competitor's, or one you're working on. No login needed.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">🔬</div>
+          <h3>We run 30+ checks</h3>
+          <p>Our engine analyzes SEO, security headers, performance signals, and reach factors in parallel.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">📊</div>
+          <h3>Get your score</h3>
+          <p>Each category gets a 0–100 score with color-coded results: green (good), amber (warning), red (critical).</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-icon">🚀</div>
+          <h3>Fix &amp; improve</h3>
+          <p>Every failed check comes with a clear, actionable fix so you know exactly what to do next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS SECTION -->
+  <section class="tips-section" id="tips">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Expert tips</span>
+        <h2 class="section-title">Quick wins for your website</h2>
+        <p class="section-subtitle">Implement these today and see results within weeks</p>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card tip-seo">
+          <div class="tip-tag">SEO</div>
+          <h3>Optimize your title tags</h3>
+          <p>Keep titles between 50–60 characters, put the primary keyword near the start, and make every page title unique.</p>
+          <div class="tip-impact">
+            <span class="impact-label">Impact:</span>
+            <div class="impact-dots">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <span class="impact-text">High</span>
+          </div>
+        </div>
+        <div class="tip-card tip-security">
+          <div class="tip-tag">Security</div>
+          <h3>Add a Content Security Policy</h3>
+          <p>A CSP header dramatically reduces XSS risk by whitelisting trusted sources for scripts, styles, and media.</p>
+          <div class="tip-impact">
+            <span class="impact-label">Impact:</span>
+            <div class="impact-dots">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+            </div>
+            <span class="impact-text">Very High</span>
+          </div>
+        </div>
+        <div class="tip-card tip-perf">
+          <div class="tip-tag">Performance</div>
+          <h3>Convert images to WebP</h3>
+          <p>WebP is 25–35% smaller than JPEG/PNG at the same quality. Use &lt;picture&gt; for progressive enhancement.</p>
+          <div class="tip-impact">
+            <span class="impact-label">Impact:</span>
+            <div class="impact-dots">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <span class="impact-text">High</span>
+          </div>
+        </div>
+        <div class="tip-card tip-reach">
+          <div class="tip-tag">Reach</div>
+          <h3>Submit an XML sitemap</h3>
+          <p>A valid sitemap.xml tells search engines exactly what to index. Submit it via Google Search Console immediately.</p>
+          <div class="tip-impact">
+            <span class="impact-label">Impact:</span>
+            <div class="impact-dots">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+            </div>
+            <span class="impact-text">Critical</span>
+          </div>
+        </div>
+        <div class="tip-card tip-seo">
+          <div class="tip-tag">SEO</div>
+          <h3>Fix broken internal links</h3>
+          <p>Broken links (404s) waste crawl budget and frustrate users. Audit monthly and redirect or fix every broken URL.</p>
+          <div class="tip-impact">
+            <span class="impact-label">Impact:</span>
+            <div class="impact-dots">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <span class="impact-text">High</span>
+          </div>
+        </div>
+        <div class="tip-card tip-security">
+          <div class="tip-tag">Security</div>
+          <h3>Enable HSTS</h3>
+          <p>HTTP Strict Transport Security forces HTTPS for all future visits, preventing protocol downgrade attacks.</p>
+          <div class="tip-impact">
+            <span class="impact-label">Impact:</span>
+            <div class="impact-dots">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+            </div>
+            <span class="impact-text">Very High</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container faq-container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Common questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>Is SiteBoost really free?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            Yes, completely free. No signup, no credit card, no limits on how many URLs you analyze. We may add a premium tier for bulk scanning in the future, but the core auditor will always be free.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>How accurate are the results?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            SiteBoost fetches your page content and analyzes the HTML, protocol, and meta information. Because browsers restrict cross-origin requests, we use a CORS proxy to retrieve the page. Results reflect what search engines and crawlers actually see, though server-side headers (like real-time HTTP headers) are approximated from the HTML content.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>What is a good score?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <strong>80–100</strong> = Excellent. <strong>60–79</strong> = Good, with room to improve. <strong>40–59</strong> = Needs work — focus on red items first. <strong>0–39</strong> = Critical issues blocking your growth. Aim for 80+ in all categories.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>Can I analyze competitor websites?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            Yes. You can analyze any publicly accessible URL. This is a great way to benchmark your site against competitors and find opportunities they're missing.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>Why does my score change between analyses?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            The score reflects the live state of your page at the time of analysis. If your page content, caching, or server configuration changes between runs, the score can shift. Always analyze the same page to compare over time.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>Does SiteBoost store my data?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            No. We don't log URLs, store results, or track you. Each analysis happens in your browser session only. We take privacy seriously.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-bg">
+      <div class="orb orb-cta-1"></div>
+      <div class="orb orb-cta-2"></div>
+    </div>
+    <div class="container cta-inner">
+      <h2>Ready to boost your website?</h2>
+      <p>Run your free audit now — takes less than 30 seconds.</p>
+      <button class="btn btn-hero" onclick="scrollToAnalyzer()">
+        <span class="btn-text">Start Free Audit</span>
+        <span class="btn-icon">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">SiteBoost</span>
+        </a>
+        <p>Free website analyzer for SEO, security, performance, and reach. Built for developers and site owners.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Tool</h4>
+          <a href="#analyzer">Analyzer</a>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it works</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#tips">SEO Tips</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Checks</h4>
+          <a href="#features">SEO Audit</a>
+          <a href="#features">Security Scan</a>
+          <a href="#features">Performance</a>
+          <a href="#features">Reach</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© 2026 SiteBoost. Free to use.</span>
+        <span>Made with ⚡ for the web</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
