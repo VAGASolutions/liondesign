@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KORTE Studio — Web Design · Security · SEO</title>
+  <meta name="description" content="Premium web design, security analysis, and SEO services that elevate your digital presence." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- lightning overlay -->
+  <canvas id="lightning-canvas"></canvas>
+  <div id="lightning-flash"></div>
+
+  <!-- ══ NAV ══ -->
+  <nav id="main-nav">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#">KOR<span>TE</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#portfolio">Work</a></li>
+        <li><a href="#analyzer">Analyzer</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a href="#contact" class="btn btn-primary" style="padding:0.55rem 1.25rem;font-size:0.8rem;">Start Project</a>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+    <canvas id="particle-canvas"></canvas>
+    <canvas id="word-canvas"></canvas>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Available for new projects · 2026
+        </div>
+
+        <h1 class="hero-title">
+          We craft digital<br />
+          experiences that<br />
+          <span class="highlight">convert.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Full-service web studio specialising in high-performance design,
+          security hardening, and SEO growth — built to make your brand
+          impossible to ignore.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">
+            View Our Work
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-outline">Get a Free Audit</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══ MARQUEE ══ -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <!-- duplicated for seamless loop -->
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Web Design
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Security Analysis
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        SEO Optimisation
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        Brand Identity
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Performance
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        UI / UX
+      </div>
+      <!-- duplicate set -->
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Web Design
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Security Analysis
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        SEO Optimisation
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        Brand Identity
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Performance
+      </div>
+      <div class="marquee-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        UI / UX
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SERVICES ══ -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="label">What we do</div>
+        <h2 class="section-title" style="margin-top:0.75rem;">End-to-end digital<br />excellence</h2>
+        <p class="section-sub">From pixel-perfect interfaces to bulletproof security — we handle every layer of your digital presence.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Web Design -->
+        <div class="service-card reveal">
+          <span class="service-number">01</span>
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3 class="service-title">Web Design & Development</h3>
+          <p class="service-desc">Stunning, conversion-focused websites engineered for speed and crafted with obsessive attention to detail.</p>
+          <ul class="service-features">
+            <li>Custom UI / UX Design</li>
+            <li>Responsive & mobile-first</li>
+            <li>React, Next.js, Webflow</li>
+            <li>Core Web Vitals 90+</li>
+            <li>CMS & e-commerce integration</li>
+          </ul>
+        </div>
+
+        <!-- Security -->
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-number">02</span>
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="service-title">Security Analysis</h3>
+          <p class="service-desc">Comprehensive vulnerability audits, penetration testing, and hardening to protect your digital assets.</p>
+          <ul class="service-features">
+            <li>OWASP Top 10 assessment</li>
+            <li>SSL/TLS & header audit</li>
+            <li>Dependency vulnerability scan</li>
+            <li>GDPR & compliance review</li>
+            <li>Ongoing monitoring</li>
+          </ul>
+        </div>
+
+        <!-- SEO -->
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-number">03</span>
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <h3 class="service-title">SEO & Growth</h3>
+          <p class="service-desc">Data-driven strategies that push you to the top of search results and keep you there sustainably.</p>
+          <ul class="service-features">
+            <li>Technical SEO audit</li>
+            <li>Keyword research & strategy</li>
+            <li>On-page & schema markup</li>
+            <li>Link building campaigns</li>
+            <li>Monthly reporting</li>
+          </ul>
+        </div>
+
+        <!-- Branding -->
+        <div class="service-card reveal reveal-delay-3">
+          <span class="service-number">04</span>
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </div>
+          <h3 class="service-title">Brand Identity</h3>
+          <p class="service-desc">Visual identities that communicate your values instantly and build lasting recognition in any market.</p>
+          <ul class="service-features">
+            <li>Logo & visual identity</li>
+            <li>Design system creation</li>
+            <li>Brand guidelines</li>
+            <li>Motion & animation</li>
+            <li>Print & digital assets</li>
+          </ul>
+        </div>
+
+        <!-- Performance -->
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-number">05</span>
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="service-title">Performance Optimisation</h3>
+          <p class="service-desc">Sub-second load times, flawless Lighthouse scores, and infrastructure tuned for peak efficiency.</p>
+          <ul class="service-features">
+            <li>Lighthouse 100 audits</li>
+            <li>Image & asset optimisation</li>
+            <li>CDN & caching strategy</li>
+            <li>Database query tuning</li>
+            <li>Real-user monitoring</li>
+          </ul>
+        </div>
+
+        <!-- Maintenance -->
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-number">06</span>
+          <div class="service-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3 class="service-title">Maintenance & Support</h3>
+          <p class="service-desc">Proactive monitoring, updates, and expert support so your site stays fast, secure, and always online.</p>
+          <ul class="service-features">
+            <li>24/7 uptime monitoring</li>
+            <li>Weekly security patches</li>
+            <li>Content updates</li>
+            <li>Priority support SLA</li>
+            <li>Monthly performance report</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STATS ══ -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="reveal">
+          <div class="stat-number" data-target="143" data-suffix="+">0+</div>
+          <div class="stat-label">Projects delivered</div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="stat-number" data-target="98" data-suffix="%">0%</div>
+          <div class="stat-label">Client satisfaction</div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="stat-number" data-target="6" data-suffix="yrs">0yrs</div>
+          <div class="stat-label">In the industry</div>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="stat-number" data-target="2" data-suffix="M+">0M+</div>
+          <div class="stat-label">Revenue generated for clients</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROCESS ══ -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header reveal" style="margin-bottom:5rem;">
+        <div class="label">How we work</div>
+        <h2 class="section-title" style="margin-top:0.75rem;">Simple, proven process</h2>
+        <p class="section-sub">From first call to launch in four clear steps — no surprises, no drama.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-num">01</div>
+          <h4 class="step-title">Discovery</h4>
+          <p class="step-desc">Deep-dive into your goals, audience, and competition to build a rock-solid strategy.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-num">02</div>
+          <h4 class="step-title">Design</h4>
+          <p class="step-desc">Wireframes → high-fidelity mockups → interactive prototype. You approve every pixel.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-num">03</div>
+          <h4 class="step-title">Build & Audit</h4>
+          <p class="step-desc">Development alongside security and SEO audits baked in — not bolted on afterwards.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-num">04</div>
+          <h4 class="step-title">Launch & Grow</h4>
+          <p class="step-desc">Smooth deployment, post-launch monitoring, and continuous improvement to keep you ahead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PORTFOLIO ══ -->
+  <section id="portfolio" style="background:var(--muted);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-header reveal" style="margin-bottom:3rem;">
+        <div class="label">Selected work</div>
+        <h2 class="section-title" style="margin-top:0.75rem;">Projects we're proud of</h2>
+      </div>
+
+      <div class="portfolio-filter reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web Design</button>
+        <button class="filter-btn" data-filter="security">Security</button>
+        <button class="filter-btn" data-filter="seo">SEO</button>
+        <button class="filter-btn" data-filter="brand">Branding</button>
+      </div>
+
+      <div class="portfolio-grid reveal">
+
+        <div class="portfolio-item" data-cat="web">
+          <img class="portfolio-thumb"
+            src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=900&q=80&auto=format&fit=crop"
+            alt="Luxe Fintech Dashboard" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Web Design</div>
+            <div class="portfolio-name">Luxe Fintech Dashboard</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-cat="brand">
+          <img class="portfolio-thumb"
+            src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&q=80&auto=format&fit=crop"
+            alt="Nova Brand Identity" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Brand Identity</div>
+            <div class="portfolio-name">Nova Brand System</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-cat="seo">
+          <img class="portfolio-thumb"
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80&auto=format&fit=crop"
+            alt="Apex SEO Campaign" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">SEO</div>
+            <div class="portfolio-name">Apex Organic Growth</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-cat="security">
+          <img class="portfolio-thumb"
+            src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80&auto=format&fit=crop"
+            alt="Shield Security Audit" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Security</div>
+            <div class="portfolio-name">Shield Security Audit</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-cat="web">
+          <img class="portfolio-thumb"
+            src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80&auto=format&fit=crop"
+            alt="Pulse Mobile App" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Web Design</div>
+            <div class="portfolio-name">Pulse Mobile App</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECURITY ANALYZER ══ -->
+  <section id="analyzer">
+    <div class="container">
+      <div class="analyzer-inner">
+
+        <div class="reveal">
+          <div class="label analyzer-label">Free tool</div>
+          <h2 class="analyzer-title">Instant Site Audit</h2>
+          <p class="analyzer-desc">
+            Enter any URL and get a live snapshot of performance, security, SEO health, and accessibility — in seconds.
+          </p>
+
+          <div class="analyzer-input-group">
+            <input id="analyze-url" class="analyzer-input" type="url" placeholder="https://yoursite.com" />
+            <button class="analyzer-btn" id="analyze-btn">Analyze →</button>
+          </div>
+
+          <div class="analyzer-metrics">
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-name">Performance</span>
+                <svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div class="metric-score score-green" id="perf-score">88</div>
+              <div class="metric-bar">
+                <div class="metric-bar-fill fill-green" data-width="88%" style="width:88%"></div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-name">Security</span>
+                <svg width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="metric-score score-amber" id="sec-score">72</div>
+              <div class="metric-bar">
+                <div class="metric-bar-fill fill-amber" data-width="72%" style="width:72%"></div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-name">SEO</span>
+                <svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </div>
+              <div class="metric-score score-green" id="seo-score">95</div>
+              <div class="metric-bar">
+                <div class="metric-bar-fill fill-green" data-width="95%" style="width:95%"></div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-name">Accessibility</span>
+                <svg width="16" height="16" fill="none" stroke="#f87171" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+              </div>
+              <div class="metric-score score-red" id="a11y-score">68</div>
+              <div class="metric-bar">
+                <div class="metric-bar-fill fill-red" data-width="68%" style="width:68%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radar chart -->
+        <div class="analyzer-visual reveal reveal-delay-2">
+          <div class="radar-wrap">
+            <svg id="radar-svg" class="radar-svg" viewBox="0 0 380 380">
+              <!-- drawn by JS -->
+            </svg>
+            <div class="radar-label">Design</div>
+            <div class="radar-label">Security</div>
+            <div class="radar-label">SEO</div>
+            <div class="radar-label">Speed</div>
+            <div class="radar-label">UX</div>
+            <div class="radar-label">Code</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header reveal" style="margin-bottom:4rem;">
+        <div class="label">Client love</div>
+        <h2 class="section-title" style="margin-top:0.75rem;">What our clients say</h2>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-quote">&ldquo;</div>
+          <div class="testimonial-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="testimonial-text">
+            KORTE redesigned our entire platform in 6 weeks. Conversion rate jumped 34% in the first month. Absolutely world-class work — they think about business, not just aesthetics.
+          </p>
+          <div class="testimonial-author">
+            <img class="author-avatar"
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop&facepad=2"
+              alt="Marcus T." />
+            <div>
+              <div class="author-name">Marcus T.</div>
+              <div class="author-role">CEO, NovaPay</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-quote">&ldquo;</div>
+          <div class="testimonial-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="testimonial-text">
+            Their security audit caught three critical vulnerabilities we had no idea about. The detailed report and remediation plan were invaluable. They saved us from a potential disaster.
+          </p>
+          <div class="testimonial-author">
+            <img class="author-avatar"
+              src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&q=80&auto=format&fit=crop&facepad=2"
+              alt="Sophia R." />
+            <div>
+              <div class="author-name">Sophia R.</div>
+              <div class="author-role">CTO, Stackify</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-quote">&ldquo;</div>
+          <div class="testimonial-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="testimonial-text">
+            Our organic traffic grew 280% in five months after KORTE's SEO overhaul. We're ranking on page one for every major keyword in our niche. Worth every penny and more.
+          </p>
+          <div class="testimonial-author">
+            <img class="author-avatar"
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&auto=format&fit=crop&facepad=2"
+              alt="James O." />
+            <div>
+              <div class="author-name">James O.</div>
+              <div class="author-role">Founder, GrowthLab</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PRICING ══ -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="label">Pricing</div>
+        <h2 class="section-title" style="margin-top:0.75rem;">Transparent, no-BS pricing</h2>
+        <p class="section-sub">Flat monthly retainers. Cancel any time. No surprise invoices.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Starter -->
+        <div class="pricing-card reveal">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-name">Essential Presence</div>
+          <div class="pricing-amount">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-price">799</span>
+            <span class="pricing-period">/mo</span>
+          </div>
+          <p class="pricing-desc">Perfect for small businesses ready to establish a professional online presence.</p>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> 5-page custom website</li>
+            <li><span class="check-icon">✓</span> Mobile responsive design</li>
+            <li><span class="check-icon">✓</span> Basic SEO setup</li>
+            <li><span class="check-icon">✓</span> Monthly security scan</li>
+            <li><span class="check-icon">✓</span> 2 content updates/mo</li>
+            <li><span class="cross-icon cross-text">—</span> <span class="cross-text">Custom animations</span></li>
+            <li><span class="cross-icon cross-text">—</span> <span class="cross-text">Full SEO campaign</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+        </div>
+
+        <!-- Pro (featured) -->
+        <div class="pricing-card featured reveal reveal-delay-1">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-tier">Pro</div>
+          <div class="pricing-name">Growth Engine</div>
+          <div class="pricing-amount">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-price">1,899</span>
+            <span class="pricing-period">/mo</span>
+          </div>
+          <p class="pricing-desc">The full stack — design, security, and SEO working together to accelerate growth.</p>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> Unlimited-page website</li>
+            <li><span class="check-icon">✓</span> Custom animations & 3D</li>
+            <li><span class="check-icon">✓</span> Full SEO campaign</li>
+            <li><span class="check-icon">✓</span> Monthly security audit</li>
+            <li><span class="check-icon">✓</span> Unlimited content updates</li>
+            <li><span class="check-icon">✓</span> Priority support (4h SLA)</li>
+            <li><span class="check-icon">✓</span> Monthly strategy call</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Get Started</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card reveal reveal-delay-2">
+          <div class="pricing-tier">Enterprise</div>
+          <div class="pricing-name">Full Partnership</div>
+          <div class="pricing-amount">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-price">4,500</span>
+            <span class="pricing-period">/mo</span>
+          </div>
+          <p class="pricing-desc">Dedicated team, white-glove service, and enterprise-grade security for serious organisations.</p>
+          <ul class="pricing-features">
+            <li><span class="check-icon">✓</span> Everything in Pro</li>
+            <li><span class="check-icon">✓</span> Dedicated project manager</li>
+            <li><span class="check-icon">✓</span> Penetration testing</li>
+            <li><span class="check-icon">✓</span> Custom integrations & API</li>
+            <li><span class="check-icon">✓</span> 1h SLA / 24/7 support</li>
+            <li><span class="check-icon">✓</span> Weekly strategy sessions</li>
+            <li><span class="check-icon">✓</span> Brand identity included</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Contact Sales</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner">
+
+        <div class="reveal">
+          <div class="label">Get in touch</div>
+          <h2 class="contact-info-title">Let's build something great</h2>
+          <p class="contact-info-desc">
+            Tell us about your project. We'll get back to you within 4 hours on business days with a clear plan and honest quote.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:0.875rem;">Email</div>
+                <div style="color:var(--muted-foreground);font-size:0.85rem;">webkorte@gmail.com</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:0.875rem;">Location</div>
+                <div style="color:var(--muted-foreground);font-size:0.85rem;">Remote — serving clients worldwide</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:0.875rem;">Response time</div>
+                <div style="color:var(--muted-foreground);font-size:0.85rem;">Within 4 hours on business days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal reveal-delay-1" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First name</label>
+              <input class="form-input" type="text" placeholder="Alex" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last name</label>
+              <input class="form-input" type="text" placeholder="Johnson" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email address</label>
+            <input class="form-input" type="email" placeholder="alex@company.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Service needed</label>
+            <select class="form-select form-input">
+              <option value="">Select a service…</option>
+              <option>Web Design & Development</option>
+              <option>Security Analysis</option>
+              <option>SEO & Growth</option>
+              <option>Brand Identity</option>
+              <option>Performance Optimisation</option>
+              <option>Full Partnership</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Budget range</label>
+            <select class="form-select form-input">
+              <option value="">Select budget…</option>
+              <option>Under $1,000</option>
+              <option>$1,000 – $5,000</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,000+</option>
+              <option>Monthly retainer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tell us about your project</label>
+            <textarea class="form-textarea" placeholder="What are you trying to achieve? Any existing site, deadline, or specific goals?" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:1rem;">
+            Send Message
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">KOR<span>TE</span></div>
+          <p class="footer-brand-desc">Premium web design, security analysis, and SEO services. We make digital experiences that work as hard as you do.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Dribbble">⬤</a>
+            <a href="#" aria-label="GitHub">◆</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#services">Web Design</a></li>
+            <li><a href="#services">Security Analysis</a></li>
+            <li><a href="#services">SEO & Growth</a></li>
+            <li><a href="#services">Brand Identity</a></li>
+            <li><a href="#services">Performance</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Legal</div>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">GDPR</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 KORTE Studio. All rights reserved.</span>
+        <span>Designed & built by KORTE</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
