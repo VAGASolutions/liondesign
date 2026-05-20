@@ -156,7 +156,7 @@ if (cursor && ring && window.innerWidth > 768) {
   canvas.width  = 700;
   canvas.height = 500;
 
-  const WORDS = ['DESIGN', 'SECURITY', 'SEO', 'SPEED', 'KORTE'];
+  const WORDS = ['DESIGN', 'SECURITY', 'SEO', 'SPEED', 'VaDesign'];
   let wordIdx = 0, particles = [], frame = 0;
 
   class P {

@@ -55,8 +55,7 @@ section,
 footer {
   position: relative;
   z-index: 1;
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(2px);
+  background: rgba(255,255,255,0.55);
 
   /* 3D scroll engine hooks */
   transform-origin: center top;
@@ -74,7 +73,7 @@ section:not(#hero):not(.marquee-section) {
 .dark section,
 .dark .marquee-section,
 .dark footer {
-  background: rgba(23,23,23,0.82);
+  background: rgba(23,23,23,0.55);
 }
 
 /* sections that need a distinct tint keep their own bg but stay translucent */
