@@ -26,7 +26,7 @@ CLAUDE.md                  — this file
 ```
 
 ## Design system
-- **Brand:** liondesign — logo splits as `Va<span>Design</span>` where `Design` renders in the accent color
+- **Brand:** liondesign — logo splits as `Lion<span>Design</span>` where `Design` renders in the accent color
 - **Accent color:** `--primary: #f59e0b` (amber) in both light and dark themes
 - **Fonts:** Inter (body/headings), JetBrains Mono (monospace/analyzer input) — load via Google Fonts in `index.html` or `styles.scss`
 - **Dark mode:** toggled via `.dark` class on `<html>`, persisted in `localStorage`
@@ -67,7 +67,7 @@ Section anchor IDs: `#hero`, `#services`, `#stats`, `#process`, `#portfolio`,
 
 ## Brand naming
 - Display name: **liondesign**
-- Logo markup: `Va<span>Design</span>` (span gets `color: var(--primary)`)
+- Logo markup: `Lion<span>Design</span>` (span gets `color: var(--primary)`)
 - Footer copyright: `© 2026 LionDesign Studio`
 - Contact email: `webkorte@gmail.com`
 - Never use the old name "KORTE" or "korte" anywhere in the codebase
