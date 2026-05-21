@@ -198,6 +198,26 @@ nav.scrolled {
 }
 .theme-toggle:hover { background: var(--accent); border-color: var(--primary); }
 
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+  height: 40px;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: all 0.2s;
+  color: var(--foreground);
+  font-family: var(--font-mono);
+}
+.lang-toggle:hover { background: var(--accent); border-color: var(--primary); color: var(--primary); }
+
 /* ── BUTTONS ── */
 .btn {
   display: inline-flex;
