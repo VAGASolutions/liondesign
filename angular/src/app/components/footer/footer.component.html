@@ -1,0 +1,50 @@
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Va<span>Design</span></div>
+        <p class="footer-brand-desc">{{ i18n.t()['footer.desc'] }}</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Dribbble">⬤</a>
+          <a href="#" aria-label="GitHub">◆</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">{{ i18n.t()['footer.col1'] }}</div>
+        <ul class="footer-links">
+          <li><a (click)="scrollTo('services')">{{ i18n.t()['s1.title'] }}</a></li>
+          <li><a (click)="scrollTo('services')">{{ i18n.t()['s2.title'] }}</a></li>
+          <li><a (click)="scrollTo('services')">{{ i18n.t()['s3.title'] }}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">{{ i18n.t()['footer.col2'] }}</div>
+        <ul class="footer-links">
+          <li><a (click)="scrollTo('process')">{{ i18n.t()['footer.process'] }}</a></li>
+          <li><a (click)="scrollTo('portfolio')">{{ i18n.t()['nav.work'] }}</a></li>
+          <li><a (click)="scrollTo('testimonials')">{{ i18n.t()['footer.testimonials'] }}</a></li>
+          <li><a (click)="scrollTo('contact')">{{ i18n.t()['nav.contact'] }}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">{{ i18n.t()['footer.col3'] }}</div>
+        <ul class="footer-links">
+          <li><a href="#">{{ i18n.t()['footer.privacy'] }}</a></li>
+          <li><a href="#">{{ i18n.t()['footer.terms'] }}</a></li>
+          <li><a href="#">{{ i18n.t()['footer.cookies'] }}</a></li>
+          <li><a href="#">GDPR</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>{{ i18n.t()['footer.copy'] }}</span>
+      <span>{{ i18n.t()['footer.built'] }}</span>
+    </div>
+  </div>
+</footer>

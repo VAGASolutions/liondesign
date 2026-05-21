@@ -1,0 +1,132 @@
+import { Injectable, signal, computed } from '@angular/core';
+
+export type Lang = 'en' | 'hu';
+
+const TRANSLATIONS: Record<Lang, Record<string, string>> = {
+  en: {
+    'nav.services': 'Services', 'nav.process': 'Process', 'nav.work': 'Work',
+    'nav.contact': 'Contact', 'nav.cta': 'Start Project',
+    'hero.badge': 'Available for new projects · 2026',
+    'hero.sub': 'Full-service web studio specialising in high-performance design, security hardening, and SEO growth — built to make your brand impossible to ignore.',
+    'hero.cta1': 'View Our Work', 'hero.cta2': 'Get a Free Audit', 'hero.scroll': 'Scroll',
+    'services.label': 'What we do',
+    'services.sub': 'From pixel-perfect interfaces to bulletproof security — we handle every layer of your digital presence.',
+    's1.title': 'Web Design & Development',
+    's1.desc': 'Stunning, conversion-focused websites engineered for speed and crafted with obsessive attention to detail.',
+    's1.f1': 'Custom UI / UX Design', 's1.f2': 'Responsive & mobile-first', 's1.f5': 'CMS & e-commerce integration',
+    's2.title': 'SEO & Growth',
+    's2.desc': 'Data-driven strategies that push you to the top of search results and keep you there sustainably.',
+    's2.f1': 'Technical SEO audit', 's2.f2': 'Keyword research & strategy',
+    's2.f3': 'On-page & schema markup', 's2.f4': 'Link building campaigns', 's2.f5': 'Monthly reporting',
+    's3.title': 'Brand Identity',
+    's3.desc': 'Visual identities that communicate your values instantly and build lasting recognition in any market.',
+    's3.f1': 'Logo & visual identity', 's3.f2': 'Design system creation',
+    's3.f3': 'Brand guidelines', 's3.f4': 'Motion & animation', 's3.f5': 'Print & digital assets',
+    'stats.p1': 'Projects delivered', 'stats.p2': 'Client satisfaction',
+    'stats.p3': 'In the industry', 'stats.p4': 'Revenue generated for clients',
+    'process.label': 'How we work', 'process.title': 'Simple, proven process',
+    'process.sub': 'From first call to launch in four clear steps — no surprises, no drama.',
+    'process.s1.title': 'Discovery', 'process.s1.desc': 'Deep-dive into your goals, audience, and competition to build a rock-solid strategy.',
+    'process.s2.title': 'Design', 'process.s2.desc': 'Wireframes → high-fidelity mockups → interactive prototype. You approve every pixel.',
+    'process.s3.title': 'Build & Audit', 'process.s3.desc': 'Development alongside security and SEO audits baked in — not bolted on afterwards.',
+    'process.s4.title': 'Launch & Grow', 'process.s4.desc': 'Smooth deployment, post-launch monitoring, and continuous improvement to keep you ahead.',
+    'portfolio.label': 'Selected work', 'portfolio.title': "Projects we're proud of",
+    'tag.web': 'Web Design', 'tag.brand': 'Brand Identity', 'tag.seo': 'SEO',
+    'testimonials.label': 'Client love', 'testimonials.title': 'What our clients say',
+    't1.text': 'VaDesign redesigned our entire platform in 6 weeks. Conversion rate jumped 34% in the first month. Absolutely world-class work — they think about business, not just aesthetics.',
+    't2.text': 'Their security audit caught three critical vulnerabilities we had no idea about. The detailed report and remediation plan were invaluable. They saved us from a potential disaster.',
+    't3.text': "Our organic traffic grew 280% in five months after VaDesign's SEO overhaul. We're ranking on page one for every major keyword in our niche. Worth every penny and more.",
+    'contact.label': 'Get in touch', 'contact.title': "Let's build something great",
+    'contact.desc': "Tell us about your project. We'll get back to you within 4 hours on business days with a clear plan and honest quote.",
+    'contact.email.label': 'Email', 'contact.location.label': 'Location',
+    'contact.location.value': 'Remote — serving clients worldwide',
+    'contact.response.label': 'Response time', 'contact.response.value': 'Within a business day',
+    'form.firstname': 'First name', 'form.firstname.ph': 'Alex',
+    'form.lastname': 'Last name', 'form.lastname.ph': 'Johnson',
+    'form.email': 'Email address', 'form.service': 'Service needed',
+    'form.service.ph': 'Select a service…', 'form.fullpart': 'Full Partnership',
+    'form.budget': 'Budget range', 'form.budget.ph': 'Select budget…',
+    'form.b1': 'Under $1,000', 'form.retainer': 'Monthly retainer',
+    'form.message': 'Tell us about your project',
+    'form.message.ph': 'What are you trying to achieve? Any existing site, deadline, or specific goals?',
+    'form.submit': 'Send Message',
+    'footer.desc': 'Premium web design, security analysis, and SEO services. We make digital experiences that work as hard as you do.',
+    'footer.col1': 'Services', 'footer.col2': 'Company', 'footer.process': 'Our Process',
+    'footer.testimonials': 'Testimonials', 'footer.col3': 'Legal',
+    'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms of Service',
+    'footer.cookies': 'Cookie Policy',
+    'footer.copy': '© 2026 VaDesign Studio. All rights reserved.',
+    'footer.built': 'Designed & built by VaDesign',
+  },
+  hu: {
+    'nav.services': 'Szolgáltatások', 'nav.process': 'Folyamat', 'nav.work': 'Munkáink',
+    'nav.contact': 'Kapcsolat', 'nav.cta': 'Projekt indítása',
+    'hero.badge': 'Elérhető új projektekre · 2026',
+    'hero.sub': 'Teljes körű webstúdió, magas teljesítményű design, biztonsági erősítés és SEO növekedés specialistái — azért, hogy márkád ne legyen figyelmen kívül hagyható.',
+    'hero.cta1': 'Munkáink megtekintése', 'hero.cta2': 'Ingyenes audit', 'hero.scroll': 'Görgetés',
+    'services.label': 'Mit csinálunk',
+    'services.sub': 'Pixel-tökéletes felületektől a golyóálló biztonságig — az online jelenléted minden rétegét kezeljük.',
+    's1.title': 'Webdesign és fejlesztés',
+    's1.desc': 'Lenyűgöző, konverzióra optimalizált weboldalak, sebességre tervezve és megszállott részletességgel kivitelezve.',
+    's1.f1': 'Egyedi UI / UX tervezés', 's1.f2': 'Reszponzív és mobilbarát', 's1.f5': 'CMS és e-kereskedelmi integráció',
+    's2.title': 'SEO és növekedés',
+    's2.desc': 'Adatvezérelt stratégiák, amelyek a keresési rangsor elejére tolnak, és ott tartanak fenntarthatóan.',
+    's2.f1': 'Technikai SEO audit', 's2.f2': 'Kulcsszókutatás és stratégia',
+    's2.f3': 'On-page és séma jelölés', 's2.f4': 'Linképítési kampányok', 's2.f5': 'Havi jelentések',
+    's3.title': 'Márkaidentitás',
+    's3.desc': 'Vizuális identitások, amelyek azonnal kommunikálják az értékeidet és tartós felismerhetőséget építenek.',
+    's3.f1': 'Logó és vizuális identitás', 's3.f2': 'Dizájnrendszer alkotás',
+    's3.f3': 'Márka arculati kézikönyv', 's3.f4': 'Mozgás és animáció', 's3.f5': 'Nyomtatott és digitális anyagok',
+    'stats.p1': 'Elkészített projekt', 'stats.p2': 'Ügyfélelégedettség',
+    'stats.p3': 'Iparági tapasztalat', 'stats.p4': 'Ügyfeleknek generált bevétel',
+    'process.label': 'Hogyan dolgozunk', 'process.title': 'Egyszerű, bevált folyamat',
+    'process.sub': 'Az első hívástól az indításig négy egyértelmű lépésben — meglepetések és dráma nélkül.',
+    'process.s1.title': 'Felfedezés', 'process.s1.desc': 'Mélyreható elemzés a céljaidról, közönségedről és versenytársaidról, hogy szilárd stratégiát építsünk.',
+    'process.s2.title': 'Tervezés', 'process.s2.desc': 'Drótváz → részletes mockup → interaktív prototípus. Te hagyod jóvá minden pixelt.',
+    'process.s3.title': 'Fejlesztés és audit', 'process.s3.desc': 'Fejlesztés biztonsági és SEO auditokkal párhuzamosan — nem utólag rárakva.',
+    'process.s4.title': 'Indítás és növekedés', 'process.s4.desc': 'Zökkenőmentes üzembe helyezés, indítás utáni monitorozás és folyamatos fejlesztés, hogy megtartsd az előnyöd.',
+    'portfolio.label': 'Kiválasztott munkák', 'portfolio.title': 'Büszke projektjeink',
+    'tag.web': 'Webdesign', 'tag.brand': 'Márkaidentitás', 'tag.seo': 'SEO',
+    'testimonials.label': 'Ügyfeleink mondják', 'testimonials.title': 'Mit mondanak ügyfeleink',
+    't1.text': 'A VaDesign 6 hét alatt teljesen áttervezte platformunkat. A konverziós arány az első hónapban 34%-kal nőtt. Abszolút világszínvonalú munka — az üzletre gondolnak, nem csak az esztétikára.',
+    't2.text': 'Biztonsági auditjuk három kritikus sérülékenységet talált, amelyekről fogalmunk sem volt. A részletes jelentés és hibaelhárítási terv felbecsülhetetlen értékű volt. Megmentöttek egy potenciális katasztrófától.',
+    't3.text': 'Organikus forgalmunk 280%-kal nőtt a VaDesign SEO átalakítása után öt hónap alatt. Az összes fő kulcsszavunkra az első oldalon vagyunk a szakterületünkön. Minden forintot megért és annál többet is.',
+    'contact.label': 'Lépj kapcsolatba', 'contact.title': 'Építsünk valami nagyszerűt',
+    'contact.desc': 'Mesélj a projektedről. 4 munkanapon belül visszajelzünk egy egyértelmű tervvel és becsületes árajánlattal.',
+    'contact.email.label': 'E-mail', 'contact.location.label': 'Helyszín',
+    'contact.location.value': 'Távoli — worldwide ügyfeleket szolgálunk',
+    'contact.response.label': 'Válaszidő', 'contact.response.value': 'Egy munkanapon belül',
+    'form.firstname': 'Keresztnév', 'form.firstname.ph': 'Alex',
+    'form.lastname': 'Vezetéknév', 'form.lastname.ph': 'Nagy',
+    'form.email': 'E-mail cím', 'form.service': 'Szükséges szolgáltatás',
+    'form.service.ph': 'Válasszon szolgáltatást…', 'form.fullpart': 'Teljes partnerség',
+    'form.budget': 'Büdzsé', 'form.budget.ph': 'Büdzsé kiválasztása…',
+    'form.b1': '350 000 Ft alatt', 'form.retainer': 'Havi megbízás',
+    'form.message': 'Mesélj a projektedről',
+    'form.message.ph': 'Mit szeretnél elérni? Van-e meglévő weboldalad, határidőd vagy konkrét céljaid?',
+    'form.submit': 'Üzenet küldése',
+    'footer.desc': 'Prémium webdesign, biztonsági elemzés és SEO szolgáltatások. Olyan digitális élményeket alkotunk, amelyek olyan keményen dolgoznak, mint te.',
+    'footer.col1': 'Szolgáltatások', 'footer.col2': 'Cég', 'footer.process': 'Folyamatunk',
+    'footer.testimonials': 'Vélemények', 'footer.col3': 'Jogi',
+    'footer.privacy': 'Adatvédelmi irányelvek', 'footer.terms': 'Felhasználási feltételek',
+    'footer.cookies': 'Cookie irányelvek',
+    'footer.copy': '© 2026 VaDesign Studio. Minden jog fenntartva.',
+    'footer.built': 'Tervezte és fejlesztette a VaDesign',
+  }
+};
+
+@Injectable({ providedIn: 'root' })
+export class I18nService {
+  lang = signal<Lang>('en');
+  t = computed(() => TRANSLATIONS[this.lang()]);
+
+  constructor() {
+    const saved = (localStorage.getItem('lang') as Lang) || 'en';
+    this.lang.set(saved);
+  }
+
+  toggle() {
+    this.lang.update(l => l === 'en' ? 'hu' : 'en');
+    localStorage.setItem('lang', this.lang());
+  }
+}

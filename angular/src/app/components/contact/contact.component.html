@@ -1,0 +1,96 @@
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+
+      <div class="reveal">
+        <div class="label">{{ i18n.t()['contact.label'] }}</div>
+        <h2 class="contact-info-title">{{ i18n.t()['contact.title'] }}</h2>
+        <p class="contact-info-desc">{{ i18n.t()['contact.desc'] }}</p>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.875rem">{{ i18n.t()['contact.email.label'] }}</div>
+              <div style="color:var(--muted-foreground);font-size:0.85rem">webkorte&#64;gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.875rem">{{ i18n.t()['contact.location.label'] }}</div>
+              <div style="color:var(--muted-foreground);font-size:0.85rem">{{ i18n.t()['contact.location.value'] }}</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.875rem">{{ i18n.t()['contact.response.label'] }}</div>
+              <div style="color:var(--muted-foreground);font-size:0.85rem">{{ i18n.t()['contact.response.value'] }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal reveal-delay-1" (ngSubmit)="onSubmit($event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">{{ i18n.t()['form.firstname'] }}</label>
+            <input class="form-input" type="text" [placeholder]="i18n.t()['form.firstname.ph']" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">{{ i18n.t()['form.lastname'] }}</label>
+            <input class="form-input" type="text" [placeholder]="i18n.t()['form.lastname.ph']" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ i18n.t()['form.email'] }}</label>
+          <input class="form-input" type="email" placeholder="alex@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ i18n.t()['form.service'] }}</label>
+          <select class="form-select form-input">
+            <option value="">{{ i18n.t()['form.service.ph'] }}</option>
+            <option>{{ i18n.t()['s1.title'] }}</option>
+            <option>{{ i18n.t()['s2.title'] }}</option>
+            <option>{{ i18n.t()['s3.title'] }}</option>
+            <option>{{ i18n.t()['form.fullpart'] }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ i18n.t()['form.budget'] }}</label>
+          <select class="form-select form-input">
+            <option value="">{{ i18n.t()['form.budget.ph'] }}</option>
+            <option>{{ i18n.t()['form.b1'] }}</option>
+            <option>$1,000 – $5,000</option>
+            <option>$5,000 – $15,000</option>
+            <option>$15,000+</option>
+            <option>{{ i18n.t()['form.retainer'] }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ i18n.t()['form.message'] }}</label>
+          <textarea class="form-textarea" [placeholder]="i18n.t()['form.message.ph']" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary"
+          style="width:100%;justify-content:center;padding:1rem"
+          [disabled]="submitting">
+          <span>{{ submitLabel || i18n.t()['form.submit'] }}</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>

@@ -1,2 +1,13 @@
 [build]
-  publish = "frontend"
+  base    = "angular"
+  command = "npm run build"
+  publish = "dist/vadesign/browser"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# SPA fallback — minden route-ot az index.html-re irányít
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
