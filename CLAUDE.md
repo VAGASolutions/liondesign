@@ -1,7 +1,7 @@
-# VaDesign Studio — Project Guide
+# LionDesign Studio — Project Guide
 
 ## What this is
-Agency website for **VaDesign**, a web design studio offering web design, security analysis, SEO, brand identity, and performance optimisation. The site includes an embedded "Instant Site Audit" analyzer tool.
+Agency website for **liondesign**, a web design studio offering web design, security analysis, SEO, brand identity, and performance optimisation. The site includes an embedded "Instant Site Audit" analyzer tool.
 
 ## Repository structure
 ```
@@ -21,12 +21,12 @@ angular/                   — Angular 21 app (primary codebase)
   angular.json             — Angular CLI workspace config
   package.json
 
-netlify.toml               — Netlify build config (base: angular/, publish: dist/vadesign/browser)
+netlify.toml               — Netlify build config (base: angular/, publish: dist/liondesign/browser)
 CLAUDE.md                  — this file
 ```
 
 ## Design system
-- **Brand:** VaDesign — logo splits as `Va<span>Design</span>` where `Design` renders in the accent color
+- **Brand:** liondesign — logo splits as `Va<span>Design</span>` where `Design` renders in the accent color
 - **Accent color:** `--primary: #f59e0b` (amber) in both light and dark themes
 - **Fonts:** Inter (body/headings), JetBrains Mono (monospace/analyzer input) — load via Google Fonts in `index.html` or `styles.scss`
 - **Dark mode:** toggled via `.dark` class on `<html>`, persisted in `localStorage`
@@ -44,7 +44,7 @@ CLAUDE.md                  — this file
 
 ## Key feature areas to port from `frontend/`
 - **Particle canvas** — fixed background, mouse-interactive (`#particle-canvas`)
-- **Word canvas** — animated particle text cycling through brand words, include `'VaDesign'`
+- **Word canvas** — animated particle text cycling through brand words, include `'liondesign'`
 - **3D scroll** — sections tilt/scale on scroll
 - **Radar chart** — SVG drawn in the analyzer section
 - **Stats counter** — IntersectionObserver count-up animation
@@ -61,14 +61,14 @@ Section anchor IDs: `#hero`, `#services`, `#stats`, `#process`, `#portfolio`,
 ## Netlify deployment
 - Build base: `angular/`
 - Build command: `npm run build`
-- Publish dir: `dist/vadesign/browser`
+- Publish dir: `dist/liondesign/browser`
 - Node version: 22
 - SPA redirect: `/* → /index.html` (200) configured in `netlify.toml`
 
 ## Brand naming
-- Display name: **VaDesign**
+- Display name: **liondesign**
 - Logo markup: `Va<span>Design</span>` (span gets `color: var(--primary)`)
-- Footer copyright: `© 2026 VaDesign Studio`
+- Footer copyright: `© 2026 LionDesign Studio`
 - Contact email: `webkorte@gmail.com`
 - Never use the old name "KORTE" or "korte" anywhere in the codebase
 

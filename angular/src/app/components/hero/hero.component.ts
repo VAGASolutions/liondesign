@@ -97,7 +97,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     const ctx = canvas.getContext('2d')!;
     canvas.width = 700; canvas.height = 500;
 
-    const WORDS = ['DESIGN', 'SECURITY', 'SEO', 'SPEED', 'VaDesign'];
+    const WORDS = ['DESIGN', 'SEO', 'SPEED', 'LionDesign'];
     let wordIdx = 0, frame = 0;
 
     interface WParticle { x: number; y: number; tx: number; ty: number; vx: number; vy: number; dead: boolean; color: string; }

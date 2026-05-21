@@ -1,7 +1,7 @@
 [build]
   base    = "angular"
   command = "npm run build"
-  publish = "dist/vadesign/browser"
+  publish = "dist/liondesign/browser"
 
 [build.environment]
   NODE_VERSION = "22"

@@ -1,6 +1,6 @@
-# VaDesign Studio — Angular App
+# LionDesign Studio — Angular App
 
-Angular 21 frontend for the VaDesign web design agency site.
+Angular 21 frontend for the LionDesign web design agency site.
 
 ## Development
 
@@ -13,7 +13,7 @@ npx ng serve         # dev server at http://localhost:4200
 ## Build
 
 ```bash
-npx ng build         # production build → dist/vadesign/browser/
+npx ng build         # production build → dist/liondesign/browser/
 ```
 
 ## Generate a component
@@ -45,7 +45,7 @@ public/
 Configured via `netlify.toml` in the repo root:
 - Base: `angular/`
 - Build command: `npm run build`
-- Publish dir: `dist/vadesign/browser`
+- Publish dir: `dist/liondesign/browser`
 - SPA redirect: `/* → /index.html` (200)
 
 ## Tests
