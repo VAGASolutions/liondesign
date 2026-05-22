@@ -1,12 +1,13 @@
+<div class="scroll-progress-bar" [style.width.%]="scrollProgress"></div>
 <nav [class.scrolled]="scrolled" [class.menu-open]="menuOpen">
   <div class="container nav-inner">
     <a class="nav-logo" (click)="scrollTo('hero')" style="cursor:pointer">Lion<span>Design</span></a>
 
     <ul class="nav-links">
-      <li><a (click)="scrollTo('services')">{{ i18n.t()['nav.services'] }}</a></li>
-      <li><a (click)="scrollTo('process')">{{ i18n.t()['nav.process'] }}</a></li>
-      <li><a (click)="scrollTo('portfolio')">{{ i18n.t()['nav.work'] }}</a></li>
-      <li><a (click)="scrollTo('contact')">{{ i18n.t()['nav.contact'] }}</a></li>
+      <li><a (click)="scrollTo('services')" [class.active]="activeSection === 'services'">{{ i18n.t()['nav.services'] }}</a></li>
+      <li><a (click)="scrollTo('process')" [class.active]="activeSection === 'process'">{{ i18n.t()['nav.process'] }}</a></li>
+      <li><a (click)="scrollTo('portfolio')" [class.active]="activeSection === 'portfolio' || activeSection === 'testimonials'">{{ i18n.t()['nav.work'] }}</a></li>
+      <li><a (click)="scrollTo('contact')" [class.active]="activeSection === 'contact'">{{ i18n.t()['nav.contact'] }}</a></li>
     </ul>
 
     <div class="nav-actions">

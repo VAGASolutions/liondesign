@@ -14,6 +14,18 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   @ViewChild('wordCanvas') wordRef!: ElementRef<HTMLCanvasElement>;
 
   private rafIds: number[] = [];
+  private cycleInterval?: ReturnType<typeof setInterval>;
+
+  readonly projects = [
+    { img: 'img/brevity.png',        name: 'Brevity',              url: 'www.brevity.hu' },
+    { img: 'img/aeolab.eu.png',      name: 'AEO Lab',              url: 'www.aeolab.eu' },
+    { img: 'img/navigo.png',          name: 'Pályázat Navigátor',  url: 'palyazatnavigator.vercel.app' },
+    { img: 'img/aicommunitylab.png', name: 'AI Community Lab',     url: 'aicommunitylab.com' },
+  ];
+  currentIdx = 0;
+  fading = false;
+
+  get currentProject() { return this.projects[this.currentIdx]; }
 
   scrollTo(id: string) {
     this.doc.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -22,10 +34,18 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.initParticles();
     this.initWordCanvas();
+    this.cycleInterval = setInterval(() => {
+      this.fading = true;
+      setTimeout(() => {
+        this.currentIdx = (this.currentIdx + 1) % this.projects.length;
+        this.fading = false;
+      }, 350);
+    }, 3500);
   }
 
   ngOnDestroy() {
     this.rafIds.forEach(id => cancelAnimationFrame(id));
+    if (this.cycleInterval) clearInterval(this.cycleInterval);
   }
 
   private initParticles() {

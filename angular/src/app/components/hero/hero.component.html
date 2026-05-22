@@ -3,35 +3,57 @@
   <canvas #wordCanvas id="word-canvas"></canvas>
 
   <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span>{{ i18n.t()['hero.badge'] }}</span>
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>{{ i18n.t()['hero.badge'] }}</span>
+        </div>
+
+        <h1 class="hero-title">
+          @if (i18n.lang() === 'en') {
+            We craft digital<br />
+            experiences that<br />
+            <span class="highlight">convert.</span>
+          } @else {
+            Digitális élményeket<br />
+            alkotunk, amelyek<br />
+            <span class="highlight">konvertálnak.</span>
+          }
+        </h1>
+
+        <p class="hero-sub">{{ i18n.t()['hero.sub'] }}</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" (click)="scrollTo('portfolio')" style="cursor:pointer">
+            <span>{{ i18n.t()['hero.cta1'] }}</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-outline" (click)="scrollTo('contact')" style="cursor:pointer">
+            {{ i18n.t()['hero.cta2'] }}
+          </a>
+        </div>
       </div>
 
-      <h1 class="hero-title">
-        @if (i18n.lang() === 'en') {
-          We craft digital<br />
-          experiences that<br />
-          <span class="highlight">convert.</span>
-        } @else {
-          Digitális élményeket<br />
-          alkotunk, amelyek<br />
-          <span class="highlight">konvertálnak.</span>
-        }
-      </h1>
-
-      <p class="hero-sub">{{ i18n.t()['hero.sub'] }}</p>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary" (click)="scrollTo('portfolio')" style="cursor:pointer">
-          <span>{{ i18n.t()['hero.cta1'] }}</span>
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a class="btn btn-outline" (click)="scrollTo('contact')" style="cursor:pointer">
-          {{ i18n.t()['hero.cta2'] }}
-        </a>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="browser-url">{{ currentProject.url }}</div>
+          </div>
+          <div class="browser-screen">
+            <img [src]="currentProject.img" [alt]="currentProject.name" [class.fading]="fading" />
+          </div>
+        </div>
+        <div class="hero-visual-badge">
+          <span>★</span> {{ currentProject.name }}
+        </div>
+        <div class="hero-visual-glow"></div>
       </div>
+
     </div>
   </div>
 
