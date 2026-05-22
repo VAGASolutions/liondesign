@@ -1,4 +1,4 @@
-<nav [class.scrolled]="scrolled">
+<nav [class.scrolled]="scrolled" [class.menu-open]="menuOpen">
   <div class="container nav-inner">
     <a class="nav-logo" (click)="scrollTo('hero')" style="cursor:pointer">Lion<span>Design</span></a>
 
@@ -13,13 +13,31 @@
       <button class="lang-toggle" (click)="i18n.toggle()">
         {{ i18n.lang() === 'hu' ? 'EN' : 'HU' }}
       </button>
-      <a class="btn btn-primary" (click)="scrollTo('contact')"
+      <a class="btn btn-primary nav-cta" (click)="scrollTo('contact')"
          style="padding:0.55rem 1.25rem;font-size:0.8rem;cursor:pointer">
         {{ i18n.t()['nav.cta'] }}
       </a>
-      <div class="hamburger" (click)="scrollTo('hero')">
+      <div class="hamburger" [class.open]="menuOpen" (click)="toggleMenu()">
         <span></span><span></span><span></span>
       </div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" [class.open]="menuOpen">
+    <ul class="mobile-nav-links">
+      <li><a (click)="scrollTo('services')">{{ i18n.t()['nav.services'] }}</a></li>
+      <li><a (click)="scrollTo('process')">{{ i18n.t()['nav.process'] }}</a></li>
+      <li><a (click)="scrollTo('portfolio')">{{ i18n.t()['nav.work'] }}</a></li>
+      <li><a (click)="scrollTo('contact')">{{ i18n.t()['nav.contact'] }}</a></li>
+    </ul>
+    <div class="mobile-menu-footer">
+      <button class="lang-toggle" (click)="i18n.toggle()">
+        {{ i18n.lang() === 'hu' ? 'EN' : 'HU' }}
+      </button>
+      <a class="btn btn-primary" (click)="scrollTo('contact')"
+         style="cursor:pointer;flex:1;justify-content:center">
+        {{ i18n.t()['nav.cta'] }}
+      </a>
     </div>
   </div>
 </nav>
