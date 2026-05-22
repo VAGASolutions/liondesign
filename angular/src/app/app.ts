@@ -7,6 +7,7 @@ import { StatsComponent } from './components/stats/stats.component';
 import { ProcessComponent } from './components/process/process.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { PricingComponent } from './components/pricing/pricing.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 
@@ -16,7 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     NavComponent, HeroComponent, MarqueeComponent, ServicesSectionComponent,
     StatsComponent, ProcessComponent, PortfolioComponent, TestimonialsComponent,
-    ContactComponent, FooterComponent
+    PricingComponent, ContactComponent, FooterComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
