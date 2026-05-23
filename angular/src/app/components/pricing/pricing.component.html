@@ -3,32 +3,30 @@
     <div class="pricing-inner reveal">
 
       <div class="pricing-left">
-        <div class="label">Árazás</div>
-        <h2 class="section-title" style="margin-top:0.75rem">
-          Egyedi ár.<br /><span style="color:var(--primary)">Ingyenes</span> konzultáció.
+        <div class="label">{{ i18n.t()['pricing.label'] }}</div>
+        <h2 class="section-title mt-3">
+          {{ i18n.t()['pricing.title1'] }}<br /><span class="text-primary">{{ i18n.t()['pricing.title.accent'] }}</span> {{ i18n.t()['pricing.title2'] }}
         </h2>
-        <p style="font-size:1rem;margin-top:1.25rem;max-width:420px">
-          Minden projekt más — ezért nem kínálunk dobozos csomagokat.
-          Az árakat a valódi igények alapján szabjuk. Az első konzultáció
-          teljesen ingyenes, semmihez nem köt.
+        <p class="text-base mt-5 max-w-[420px]">
+          {{ i18n.t()['pricing.desc'] }}
         </p>
 
         <ul class="pricing-perks">
           <li>
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Ingyenes első konzultáció
+            {{ i18n.t()['pricing.perk1'] }}
           </li>
           <li>
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Egyedi, tételes ajánlat
+            {{ i18n.t()['pricing.perk2'] }}
           </li>
           <li>
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Nincsenek rejtett díjak
+            {{ i18n.t()['pricing.perk3'] }}
           </li>
           <li>
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Rugalmas fizetési feltételek
+            {{ i18n.t()['pricing.perk4'] }}
           </li>
         </ul>
 
@@ -46,31 +44,28 @@
 
       <div class="pricing-right">
         <div class="pricing-card">
-          <div class="pricing-card-label">Töltsd ki a design briefet</div>
-          <h3 class="pricing-card-title">Pontosan tudjuk,<br />mit szeretnél.</h3>
-          <p class="pricing-card-desc">
-            Pár kérdés a designról — szín, stílus, elrendezés, minden. 5 perc alatt
-            kész, és azonnal látjuk, hogyan segíthetünk.
-          </p>
+          <div class="pricing-card-label">{{ i18n.t()['pricing.card.label'] }}</div>
+          <h3 class="pricing-card-title">{{ i18n.t()['pricing.card.title1'] }}<br />{{ i18n.t()['pricing.card.title2'] }}</h3>
+          <p class="pricing-card-desc">{{ i18n.t()['pricing.card.desc'] }}</p>
           <div class="pricing-card-steps">
             <div class="pricing-step-item">
               <span class="pricing-step-num">1</span>
-              <span>Töltsd ki a design briefet</span>
+              <span>{{ i18n.t()['pricing.card.step1'] }}</span>
             </div>
             <div class="pricing-step-item">
               <span class="pricing-step-num">2</span>
-              <span>Ingyenes konzultáció egyeztetés</span>
+              <span>{{ i18n.t()['pricing.card.step2'] }}</span>
             </div>
             <div class="pricing-step-item">
               <span class="pricing-step-num">3</span>
-              <span>Egyedi ajánlat 24 órán belül</span>
+              <span>{{ i18n.t()['pricing.card.step3'] }}</span>
             </div>
           </div>
           <button class="btn btn-primary pricing-cta" (click)="openModal()">
-            <span>Indítsd el a projekted</span>
+            <span>{{ i18n.t()['pricing.card.cta'] }}</span>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <p class="pricing-note">Ingyenes · Kötelezettség nélkül · ~5 perc</p>
+          <p class="pricing-note">{{ i18n.t()['pricing.card.note'] }}</p>
         </div>
       </div>
 
@@ -80,43 +75,61 @@
 
 <!-- ── BRIEF MODAL ── -->
 @if (modalOpen) {
-  <div class="brief-overlay" (click)="closeModal()">
-    <div class="brief-modal" (click)="$event.stopPropagation()">
+  <div class="brief-overlay">
+    <div class="brief-modal">
 
       <!-- Header -->
       <div class="brief-modal-header">
-        <div class="brief-progress-wrap">
-          @if (currentStep < TOTAL_STEPS) {
-            <span class="brief-step-counter">{{ currentStep + 1 }} / {{ TOTAL_STEPS }}</span>
-          } @else {
-            <span class="brief-step-counter">Összefoglaló</span>
-          }
-          <div class="brief-progress-track">
-            <div class="brief-progress-fill" [style.width.%]="progress"></div>
+        <div class="brief-header-top">
+          <div class="brief-header-brand">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Design Brief
+          </div>
+          <div class="brief-header-right">
+            @if (currentStep < TOTAL_STEPS) {
+              <span class="brief-step-counter">{{ currentStep + 1 }}&thinsp;/&thinsp;{{ TOTAL_STEPS }}</span>
+            } @else {
+              <span class="brief-step-counter">{{ i18n.t()['brief.header.done'] }}</span>
+            }
+            <button class="brief-close-btn" (click)="closeModal()">✕</button>
           </div>
         </div>
-        <button class="brief-close-btn" (click)="closeModal()">✕</button>
+        <div class="brief-progress-dots">
+          @for (i of stepRange; track i) {
+            <div class="brief-dot"
+                 [class.active]="i === currentStep"
+                 [class.done]="i < currentStep"></div>
+          }
+        </div>
+        <div class="brief-progress-track">
+          <div class="brief-progress-fill" [style.width.%]="progress"></div>
+        </div>
       </div>
 
       <!-- Body -->
       <div class="brief-modal-body">
         @switch (currentStep) {
 
-          <!-- STEP 0: Projekt alap -->
+          <!-- STEP 0 -->
           @case (0) {
             <div class="brief-step">
-              <div class="brief-step-title">🎯 Projekt alapadatok</div>
-              <p class="brief-step-desc">Mesélj egy kicsit a projektedről.</p>
-
-              <div class="form-group">
-                <label class="form-label">Projekt / cég neve</label>
-                <input class="form-input" [(ngModel)]="brief.projectName" placeholder="pl. Kovács Kft" />
+              <div class="brief-step-header">
+                <div class="brief-step-icon">🎯</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s0.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s0.desc'] }}</p>
+                </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Milyen típusú weboldalt szeretnél?</label>
+                <label class="form-label">{{ i18n.t()['brief.s0.name'] }}</label>
+                <input class="form-input" [(ngModel)]="brief.projectName" [placeholder]="i18n.t()['brief.s0.name.ph']" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">{{ i18n.t()['brief.s0.type'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Landing page','Cégweboldal','Portfolio','Webshop','SaaS','Blog','Egyéb']; track opt) {
+                  @for (opt of siteTypes(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.siteType === opt"
                       (click)="brief.siteType = opt">{{ opt }}</button>
@@ -125,14 +138,14 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Melyik iparágban?</label>
-                <input class="form-input" [(ngModel)]="brief.industry" placeholder="pl. Egészségügy, IT, Ingatlan…" />
+                <label class="form-label">{{ i18n.t()['brief.s0.industry'] }}</label>
+                <input class="form-input" [(ngModel)]="brief.industry" [placeholder]="i18n.t()['brief.s0.industry.ph']" />
               </div>
 
               <div class="form-group">
-                <label class="form-label">Mi az oldal fő célja?</label>
+                <label class="form-label">{{ i18n.t()['brief.s0.goal'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Értékesítés','Lead gyűjtés','Bemutatkozás','Foglalás','Közösségépítés','Egyéb']; track opt) {
+                  @for (opt of goals(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.goal === opt"
                       (click)="brief.goal = opt">{{ opt }}</button>
@@ -142,39 +155,49 @@
             </div>
           }
 
-          <!-- STEP 1: Jelenlegi weboldal (skippable) -->
+          <!-- STEP 1 -->
           @case (1) {
             <div class="brief-step">
-              <div class="brief-step-title">🔗 Jelenlegi weboldal</div>
-              <p class="brief-step-desc">Ha van már weboldalad, add meg a linkjét — referenciaként használom az ajánlatnál. <span class="brief-skip-note">(Kihagyható)</span></p>
-
-              <div class="form-group">
-                <label class="form-label">Weboldal URL</label>
-                <input class="form-input" [(ngModel)]="brief.currentSiteUrl" type="url" placeholder="https://www.pelda.hu" />
+              <div class="brief-step-header">
+                <div class="brief-step-icon">🔗</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s1.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s1.desc'] }} <span class="brief-skip-note">{{ i18n.t()['brief.s1.optional'] }}</span></p>
+                </div>
               </div>
 
-              <p style="font-size:0.82rem;color:var(--muted-foreground);margin-top:0.5rem">
-                Nincs még oldalad? Kattints a "Kihagyom" gombra.
+              <div class="form-group">
+                <label class="form-label">{{ i18n.t()['brief.s1.url'] }}</label>
+                <input class="form-input" [(ngModel)]="brief.currentSiteUrl" type="url" [placeholder]="i18n.t()['brief.s1.url.ph']" />
+              </div>
+
+              <p class="text-[0.82rem] text-muted-foreground mt-2">
+                {{ i18n.t()['brief.s1.hint'] }}
               </p>
             </div>
           }
 
-          <!-- STEP 2: Célközönség -->
+          <!-- STEP 2 -->
           @case (2) {
             <div class="brief-step">
-              <div class="brief-step-title">👥 Célközönség</div>
-              <p class="brief-step-desc">Kinek szól az oldal?</p>
-
-              <div class="form-group">
-                <label class="form-label">Kik a célközönséged?</label>
-                <textarea class="form-textarea" style="min-height:80px" [(ngModel)]="brief.audience"
-                  placeholder="pl. 30-50 éves kisvállalkozók, akik…"></textarea>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">👥</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s2.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s2.desc'] }}</p>
+                </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Piaci szegmens</label>
+                <label class="form-label">{{ i18n.t()['brief.s2.audience'] }}</label>
+                <textarea class="form-textarea min-h-[80px]" [(ngModel)]="brief.audience"
+                  [placeholder]="i18n.t()['brief.s2.audience.ph']"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">{{ i18n.t()['brief.s2.segment'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['B2B — cégeknek','B2C — magánszemélyeknek','Mindkettő']; track opt) {
+                  @for (opt of b2bOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.b2b === opt"
                       (click)="brief.b2b = opt">{{ opt }}</button>
@@ -183,23 +206,28 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Mi az az egy mondat, amit az oldalnak azonnal közvetítenie kell?</label>
+                <label class="form-label">{{ i18n.t()['brief.s2.message'] }}</label>
                 <input class="form-input" [(ngModel)]="brief.keyMessage"
-                  placeholder="pl. A leggyorsabb könyvelő szoftver KKV-knak" />
+                  [placeholder]="i18n.t()['brief.s2.message.ph']" />
               </div>
             </div>
           }
 
-          <!-- STEP 3: Technológia (skippable) -->
+          <!-- STEP 3 -->
           @case (3) {
             <div class="brief-step">
-              <div class="brief-step-title">💻 Technológia</div>
-              <p class="brief-step-desc">Tudod-e milyen frontendet szeretnél? <span class="brief-skip-note">(Kihagyható)</span></p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">💻</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s3.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s3.desc'] }} <span class="brief-skip-note">{{ i18n.t()['brief.s3.optional'] }}</span></p>
+                </div>
+              </div>
 
               <div class="form-group">
-                <label class="form-label">Preferred frontend</label>
+                <label class="form-label">{{ i18n.t()['brief.s3.frontend'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['React','Next.js','Angular','Vue / Nuxt','Webflow','WordPress','Nincs preferencia']; track opt) {
+                  @for (opt of frontends(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.frontend === opt"
                       (click)="brief.frontend = opt">{{ opt }}</button>
@@ -209,16 +237,21 @@
             </div>
           }
 
-          <!-- STEP 4: Márka & logó -->
+          <!-- STEP 4 -->
           @case (4) {
             <div class="brief-step">
-              <div class="brief-step-title">🔰 Márka & logó</div>
-              <p class="brief-step-desc">Hol tartasz a vizuális azonossággal?</p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">🔰</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s4.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s4.desc'] }}</p>
+                </div>
+              </div>
 
               <div class="form-group">
-                <label class="form-label">Van már logód?</label>
+                <label class="form-label">{{ i18n.t()['brief.s4.logo'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen, kész logó','Nincs logó','Készül / tervezés alatt']; track opt) {
+                  @for (opt of logoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasLogo === opt"
                       (click)="brief.hasLogo = opt">{{ opt }}</button>
@@ -227,9 +260,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Van meghatározott brand identity (szín, betű, stílus)?</label>
+                <label class="form-label">{{ i18n.t()['brief.s4.brand'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen, teljesen kész','Részben megvan','Nincs, kell segítség']; track opt) {
+                  @for (opt of brandOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasBrand === opt"
                       (click)="brief.hasBrand = opt">{{ opt }}</button>
@@ -237,60 +270,63 @@
                 </div>
               </div>
 
-              @if (brief.hasBrand === 'Igen, teljesen kész' || brief.hasBrand === 'Részben megvan') {
+              @if (brief.hasBrand === brandOptions()[0] || brief.hasBrand === brandOptions()[1]) {
                 <div class="form-group">
-                  <label class="form-label">Írd le röviden (meglévő színkód, betűtípus neve, stb.)</label>
+                  <label class="form-label">{{ i18n.t()['brief.s4.brand.detail'] }}</label>
                   <input class="form-input" [(ngModel)]="brief.brandDetails"
-                    placeholder="pl. elsődleges szín: #1a73e8, betű: Nunito" />
+                    [placeholder]="i18n.t()['brief.s4.brand.detail.ph']" />
                 </div>
               }
             </div>
           }
 
-          <!-- STEP 5: Színek -->
+          <!-- STEP 5 -->
           @case (5) {
             <div class="brief-step">
-              <div class="brief-step-title">🎨 Színek</div>
-              <p class="brief-step-desc">Ha nem tudod pontosan, hagyd kikapcsolva — az ajánlatban javaslatot adok.</p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">🎨</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s5.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s5.desc'] }}</p>
+                </div>
+              </div>
 
               <div class="form-group">
                 <div class="color-row">
-                  <label class="form-label" style="margin:0">Elsődleges (fő) szín</label>
+                  <label class="form-label m-0">{{ i18n.t()['brief.s5.primary'] }}</label>
                   <label class="brief-toggle">
                     <input type="checkbox" [(ngModel)]="brief.primaryColorKnown" />
-                    <span>Tudom</span>
+                    <span>{{ i18n.t()['brief.s5.know'] }}</span>
                   </label>
                 </div>
                 @if (brief.primaryColorKnown) {
                   <div class="color-picker-row">
                     <input type="color" class="color-picker" [(ngModel)]="brief.primaryColor" />
-                    <input class="form-input" style="font-family:var(--font-mono);font-size:0.85rem"
-                      [(ngModel)]="brief.primaryColor" placeholder="#f59e0b" />
+                    <input class="form-input font-mono text-sm" [(ngModel)]="brief.primaryColor" placeholder="#f59e0b" />
                   </div>
                 }
               </div>
 
               <div class="form-group">
                 <div class="color-row">
-                  <label class="form-label" style="margin:0">Másodlagos / háttér szín</label>
+                  <label class="form-label m-0">{{ i18n.t()['brief.s5.secondary'] }}</label>
                   <label class="brief-toggle">
                     <input type="checkbox" [(ngModel)]="brief.secondaryColorKnown" />
-                    <span>Tudom</span>
+                    <span>{{ i18n.t()['brief.s5.know'] }}</span>
                   </label>
                 </div>
                 @if (brief.secondaryColorKnown) {
                   <div class="color-picker-row">
                     <input type="color" class="color-picker" [(ngModel)]="brief.secondaryColor" />
-                    <input class="form-input" style="font-family:var(--font-mono);font-size:0.85rem"
-                      [(ngModel)]="brief.secondaryColor" placeholder="#171717" />
+                    <input class="form-input font-mono text-sm" [(ngModel)]="brief.secondaryColor" placeholder="#171717" />
                   </div>
                 }
               </div>
 
               <div class="form-group">
-                <label class="form-label">Téma</label>
+                <label class="form-label">{{ i18n.t()['brief.s5.theme'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Sötét (dark)','Világos (light)','Mindkettő (toggle)']; track opt) {
+                  @for (opt of themeOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.theme === opt"
                       (click)="brief.theme = opt">{{ opt }}</button>
@@ -299,9 +335,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Milyen érzést kell keltenie? <span style="font-weight:400;color:var(--muted-foreground)">(több is választható)</span></label>
+                <label class="form-label">{{ i18n.t()['brief.s5.mood'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s5.mood.multi'] }}</span></label>
                 <div class="option-chips">
-                  @for (opt of ['Luxus','Bizalom','Energia','Barátságos','Tech','Prémium','Kreatív','Természetes','Szakmai']; track opt) {
+                  @for (opt of moodOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="has(brief.mood, opt)"
                       (click)="toggle(brief.mood, opt)">{{ opt }}</button>
@@ -311,52 +347,35 @@
             </div>
           }
 
-          <!-- STEP 6: Tipográfia -->
+          <!-- STEP 6 -->
           @case (6) {
             <div class="brief-step">
-              <div class="brief-step-title">✍️ Tipográfia</div>
-              <p class="brief-step-desc">Milyen betűstílust képzelsz el?</p>
-
-              <div class="form-group">
-                <label class="form-label">Betűtípus karaktere</label>
-                <div class="option-chips option-chips--vertical">
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.fontStyle === 'Modern sans-serif'"
-                    (click)="brief.fontStyle = 'Modern sans-serif'">
-                    <strong>Modern sans-serif</strong>
-                    <span>Inter, Geist, DM Sans — tiszta, mai, digitális</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.fontStyle === 'Klasszikus serif'"
-                    (click)="brief.fontStyle = 'Klasszikus serif'">
-                    <strong>Klasszikus serif</strong>
-                    <span>Playfair, Lora — elegáns, presztízsjelző</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.fontStyle === 'Display / kézírásos'"
-                    (click)="brief.fontStyle = 'Display / kézírásos'">
-                    <strong>Display / kézírásos</strong>
-                    <span>Kreatív, egyedi, személyes hang</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.fontStyle === 'Monospace'"
-                    (click)="brief.fontStyle = 'Monospace'">
-                    <strong>Monospace</strong>
-                    <span>JetBrains Mono, Fira Code — tech, fejlesztői</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.fontStyle === 'Nincs preferencia'"
-                    (click)="brief.fontStyle = 'Nincs preferencia'">
-                    <strong>Nincs preferencia</strong>
-                    <span>Javaslatot várok</span>
-                  </button>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">✍️</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s6.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s6.desc'] }}</p>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Fontos az ékezetes magyar karakterek támogatása?</label>
+                <label class="form-label">{{ i18n.t()['brief.s6.style'] }}</label>
+                <div class="option-chips option-chips--vertical">
+                  @for (fs of fontStyles(); track fs.key) {
+                    <button type="button" class="option-chip option-chip--wide"
+                      [class.selected]="brief.fontStyle === fs.key"
+                      (click)="brief.fontStyle = fs.key">
+                      <strong>{{ fs.label }}</strong>
+                      <span>{{ fs.desc }}</span>
+                    </button>
+                  }
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">{{ i18n.t()['brief.s6.hu'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen','Nem','Nem tudom']; track opt) {
+                  @for (opt of yesNoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.needsHungarian === opt"
                       (click)="brief.needsHungarian = opt">{{ opt }}</button>
@@ -366,78 +385,60 @@
             </div>
           }
 
-          <!-- STEP 7: Vizuális stílus -->
+          <!-- STEP 7 -->
           @case (7) {
             <div class="brief-step">
-              <div class="brief-step-title">🖼️ Vizuális stílus</div>
-              <p class="brief-step-desc">Milyen hangulatú legyen az oldal?</p>
-
-              <div class="form-group">
-                <label class="form-label">Stílusok <span style="font-weight:400;color:var(--muted-foreground)">(több is választható)</span></label>
-                <div class="option-chips option-chips--vertical">
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="has(brief.visualStyles, 'Minimál')"
-                    (click)="toggle(brief.visualStyles, 'Minimál')">
-                    <strong>Minimál</strong>
-                    <span>Sok whitespace, kevés elem, tiszta vonalak</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="has(brief.visualStyles, 'Bold / erős')"
-                    (click)="toggle(brief.visualStyles, 'Bold / erős')">
-                    <strong>Bold / erős</strong>
-                    <span>Nagy betűk, kemény kontraszt, határozott identitás</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="has(brief.visualStyles, 'Luxus / prémium')"
-                    (click)="toggle(brief.visualStyles, 'Luxus / prémium')">
-                    <strong>Luxus / prémium</strong>
-                    <span>Sötét alap, arany/ezüst kiemelők, animált részletek</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="has(brief.visualStyles, 'Játékos / kreatív')"
-                    (click)="toggle(brief.visualStyles, 'Játékos / kreatív')">
-                    <strong>Játékos / kreatív</strong>
-                    <span>Színes, animált, humoros, nem konvencionális</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="has(brief.visualStyles, 'Korporatív / megbízható')"
-                    (click)="toggle(brief.visualStyles, 'Korporatív / megbízható')">
-                    <strong>Korporatív / megbízható</strong>
-                    <span>Konzervatív, strukturált, bizalomkeltő</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="has(brief.visualStyles, 'Tech / startup')"
-                    (click)="toggle(brief.visualStyles, 'Tech / startup')">
-                    <strong>Tech / startup</strong>
-                    <span>Glow, gradient, dark mode, modern SaaS esztétika</span>
-                  </button>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">🖼️</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s7.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s7.desc'] }}</p>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Mutass 1-3 oldalt ami tetszik! <span style="font-weight:400;color:var(--muted-foreground)">(URL-ek, vesszővel elválasztva)</span></label>
-                <textarea class="form-textarea" style="min-height:70px" [(ngModel)]="brief.inspirationUrls"
-                  placeholder="linear.app, vercel.com, stripe.com"></textarea>
+                <label class="form-label">{{ i18n.t()['brief.s7.styles'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s7.multi'] }}</span></label>
+                <div class="option-chips option-chips--vertical">
+                  @for (vs of visualStyles(); track vs.key) {
+                    <button type="button" class="option-chip option-chip--wide"
+                      [class.selected]="has(brief.visualStyles, vs.key)"
+                      (click)="toggle(brief.visualStyles, vs.key)">
+                      <strong>{{ vs.label }}</strong>
+                      <span>{{ vs.desc }}</span>
+                    </button>
+                  }
+                </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Mutass 1-2 oldalt ami NEM tetszik <span style="font-weight:400;color:var(--muted-foreground)">(opcionális)</span></label>
-                <textarea class="form-textarea" style="min-height:60px" [(ngModel)]="brief.dislikedUrls"
-                  placeholder="pl. valami.hu — túl zsúfolt, régi stílus"></textarea>
+                <label class="form-label">{{ i18n.t()['brief.s7.inspo'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s7.inspo.hint'] }}</span></label>
+                <textarea class="form-textarea" class="min-h-[70px]" [(ngModel)]="brief.inspirationUrls"
+                  [placeholder]="i18n.t()['brief.s7.inspo.ph']"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">{{ i18n.t()['brief.s7.dislike'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s7.dislike.hint'] }}</span></label>
+                <textarea class="form-textarea" class="min-h-[60px]" [(ngModel)]="brief.dislikedUrls"
+                  [placeholder]="i18n.t()['brief.s7.dislike.ph']"></textarea>
               </div>
             </div>
           }
 
-          <!-- STEP 8: Elrendezés -->
+          <!-- STEP 8 -->
           @case (8) {
             <div class="brief-step">
-              <div class="brief-step-title">📐 Elrendezés & navigáció</div>
-              <p class="brief-step-desc">Hogyan épüljön fel az oldal?</p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">📐</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s8.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s8.desc'] }}</p>
+                </div>
+              </div>
 
               <div class="form-group">
-                <label class="form-label">Struktúra</label>
+                <label class="form-label">{{ i18n.t()['brief.s8.structure'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Egy hosszú landing page','Több aloldal','Mindkettő']; track opt) {
+                  @for (opt of pageStructures(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.pageStructure === opt"
                       (click)="brief.pageStructure = opt">{{ opt }}</button>
@@ -446,9 +447,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Milyen szekciók kellenek? <span style="font-weight:400;color:var(--muted-foreground)">(több is)</span></label>
+                <label class="form-label">{{ i18n.t()['brief.s8.sections'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s8.sections.multi'] }}</span></label>
                 <div class="option-chips">
-                  @for (opt of ['Hero','Szolgáltatások','Portfolio','Vélemények','Árazás','FAQ','Blog','Kapcsolat','Rólunk','Csapat','Statisztikák']; track opt) {
+                  @for (opt of sectionOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="has(brief.sections, opt)"
                       (click)="toggle(brief.sections, opt)">{{ opt }}</button>
@@ -457,9 +458,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Navigáció stílusa</label>
+                <label class="form-label">{{ i18n.t()['brief.s8.nav.style'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Fix felső nav','Oldalsáv','Hamburger-only','Sticky + hamburger mobile']; track opt) {
+                  @for (opt of navStyles(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.navStyle === opt"
                       (click)="brief.navStyle = opt">{{ opt }}</button>
@@ -468,9 +469,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Görgetési animáció / parallax fontos?</label>
+                <label class="form-label">{{ i18n.t()['brief.s8.scroll'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen, legyen','Nem szükséges','Nem fontos']; track opt) {
+                  @for (opt of scrollOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.scrollAnimations === opt"
                       (click)="brief.scrollAnimations = opt">{{ opt }}</button>
@@ -480,16 +481,21 @@
             </div>
           }
 
-          <!-- STEP 9: Képek & média -->
+          <!-- STEP 9 -->
           @case (9) {
             <div class="brief-step">
-              <div class="brief-step-title">📸 Képek & média</div>
-              <p class="brief-step-desc">Milyen vizuális anyag áll rendelkezésre?</p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">📸</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s9.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s9.desc'] }}</p>
+                </div>
+              </div>
 
               <div class="form-group">
-                <label class="form-label">Van saját fotóanyagod?</label>
+                <label class="form-label">{{ i18n.t()['brief.s9.photos'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen, kész fotók vannak','Nincs, kell stock','Nincs, kell fotózás','Részben van']; track opt) {
+                  @for (opt of photoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasPhotos === opt"
                       (click)="brief.hasPhotos = opt">{{ opt }}</button>
@@ -498,9 +504,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Kell videó háttér vagy beágyazás?</label>
+                <label class="form-label">{{ i18n.t()['brief.s9.video'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen','Nem','Esetleg']; track opt) {
+                  @for (opt of videoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.needsVideo === opt"
                       (click)="brief.needsVideo = opt">{{ opt }}</button>
@@ -509,9 +515,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Milyen ikonstílus tetszik?</label>
+                <label class="form-label">{{ i18n.t()['brief.s9.icons'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Vonalak (outline)','Tömör (filled)','3D / illustráció','Emoji','Nincs ikon']; track opt) {
+                  @for (opt of iconOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.iconStyle === opt"
                       (click)="brief.iconStyle = opt">{{ opt }}</button>
@@ -521,52 +527,46 @@
             </div>
           }
 
-          <!-- STEP 10: Animáció szint -->
+          <!-- STEP 10 -->
           @case (10) {
             <div class="brief-step">
-              <div class="brief-step-title">⚡ Animációk szintje</div>
-              <p class="brief-step-desc">Mennyire legyen élénk, interaktív az oldal?</p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">⚡</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s10.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s10.desc'] }}</p>
+                </div>
+              </div>
 
               <div class="form-group">
                 <div class="option-chips option-chips--vertical">
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.animationLevel === 'Semmi — statikus oldal'"
-                    (click)="brief.animationLevel = 'Semmi — statikus oldal'">
-                    <strong>Semmi — statikus</strong>
-                    <span>Gyors, egyszerű, maximális teljesítmény</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.animationLevel === 'Finom — scroll reveal, fade-in'"
-                    (click)="brief.animationLevel = 'Finom — scroll reveal, fade-in'">
-                    <strong>Finom</strong>
-                    <span>Scroll reveal, fade-in elemek — professzionális, visszafogott</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.animationLevel === 'Közepes — hover effektek, transition-ök'"
-                    (click)="brief.animationLevel = 'Közepes — hover effektek, transition-ök'">
-                    <strong>Közepes</strong>
-                    <span>Hover effektek, smooth transition-ök, némi interakció</span>
-                  </button>
-                  <button type="button" class="option-chip option-chip--wide"
-                    [class.selected]="brief.animationLevel === 'Gazdag — parallax, 3D, mikro-animációk'"
-                    (click)="brief.animationLevel = 'Gazdag — parallax, 3D, mikro-animációk'">
-                    <strong>Gazdag</strong>
-                    <span>Parallax, 3D, particle, micro-interactions — emlékezetes élmény</span>
-                  </button>
+                  @for (al of animLevels(); track al.key) {
+                    <button type="button" class="option-chip option-chip--wide"
+                      [class.selected]="brief.animationLevel === al.key"
+                      (click)="brief.animationLevel = al.key">
+                      <strong>{{ al.label }}</strong>
+                      <span>{{ al.desc }}</span>
+                    </button>
+                  }
                 </div>
               </div>
             </div>
           }
 
-          <!-- STEP 11: Speciális funkciók -->
+          <!-- STEP 11 -->
           @case (11) {
             <div class="brief-step">
-              <div class="brief-step-title">🔧 Speciális funkciók</div>
-              <p class="brief-step-desc">Kell-e valami ezek közül? <span style="font-weight:400;color:var(--muted-foreground)">(több is választható)</span></p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">🔧</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s11.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s11.desc'] }} <span class="brief-skip-note">{{ i18n.t()['brief.s11.multi'] }}</span></p>
+                </div>
+              </div>
 
               <div class="form-group">
                 <div class="option-chips">
-                  @for (opt of ['Webshop / checkout','Blog / CMS','Foglalási rendszer','Többnyelvűség','Dark / light mode','Interaktív kalkulátor','Quiz / konfigurátor','Bejelentkező rendszer','Keresés','Hírlap feliratkozás','Térkép integráció']; track opt) {
+                  @for (opt of featureOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="has(brief.features, opt)"
                       (click)="toggle(brief.features, opt)">{{ opt }}</button>
@@ -576,16 +576,21 @@
             </div>
           }
 
-          <!-- STEP 12: Tartalom & határidő -->
+          <!-- STEP 12 -->
           @case (12) {
             <div class="brief-step">
-              <div class="brief-step-title">📝 Tartalom & határidő</div>
-              <p class="brief-step-desc">Utolsó pár kérdés.</p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">📝</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s12.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s12.desc'] }}</p>
+                </div>
+              </div>
 
               <div class="form-group">
-                <label class="form-label">Megvan a szöveges tartalom (copy)?</label>
+                <label class="form-label">{{ i18n.t()['brief.s12.copy'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen, minden megvan','Részben megvan','Nincs, kell segítség']; track opt) {
+                  @for (opt of copyOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasCopy === opt"
                       (click)="brief.hasCopy = opt">{{ opt }}</button>
@@ -594,9 +599,9 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Megvan a képanyag?</label>
+                <label class="form-label">{{ i18n.t()['brief.s12.images'] }}</label>
                 <div class="option-chips">
-                  @for (opt of ['Igen, minden megvan','Részben megvan','Nincs, kell stock fotó']; track opt) {
+                  @for (opt of imageOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasImages === opt"
                       (click)="brief.hasImages = opt">{{ opt }}</button>
@@ -605,33 +610,35 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Határidő <span style="font-weight:400;color:var(--muted-foreground)">(opcionális)</span></label>
+                <label class="form-label">{{ i18n.t()['brief.s12.deadline'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s12.deadline.hint'] }}</span></label>
                 <input class="form-input" [(ngModel)]="brief.deadline"
-                  placeholder="pl. 2026 augusztus, vagy: nincs fix határidő" />
+                  [placeholder]="i18n.t()['brief.s12.deadline.ph']" />
               </div>
 
               <div class="form-group">
-                <label class="form-label">Van valami amit mindenképpen bele kell emelni?</label>
-                <textarea class="form-textarea" style="min-height:70px" [(ngModel)]="brief.mustHave"
-                  placeholder="pl. díjak, sajtómegjelenések, konkrét szekció…"></textarea>
+                <label class="form-label">{{ i18n.t()['brief.s12.must'] }}</label>
+                <textarea class="form-textarea" class="min-h-[70px]" [(ngModel)]="brief.mustHave"
+                  [placeholder]="i18n.t()['brief.s12.must.ph']"></textarea>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Van valami amit mindenképpen kerülni kell?</label>
-                <textarea class="form-textarea" style="min-height:70px" [(ngModel)]="brief.mustAvoid"
-                  placeholder="pl. villogó animációk, több mint 3 szín, stb."></textarea>
+                <label class="form-label">{{ i18n.t()['brief.s12.avoid'] }}</label>
+                <textarea class="form-textarea" class="min-h-[70px]" [(ngModel)]="brief.mustAvoid"
+                  [placeholder]="i18n.t()['brief.s12.avoid.ph']"></textarea>
               </div>
             </div>
           }
 
-          <!-- STEP 13: Összefoglaló -->
+          <!-- STEP 13 -->
           @case (13) {
             <div class="brief-step">
-              <div class="brief-step-title">✅ Design Brief kész!</div>
-              <p class="brief-step-desc">
-                Másold be ezt a szöveget egy Claude.ai beszélgetésbe, és azonnal elkezdheted a design tervezést.
-                Én is megkapom az adataid — hamarosan felveszem veled a kapcsolatot.
-              </p>
+              <div class="brief-step-header">
+                <div class="brief-step-icon">✅</div>
+                <div class="brief-step-meta">
+                  <h3 class="brief-step-title">{{ i18n.t()['brief.s13.title'] }}</h3>
+                  <p class="brief-step-desc">{{ i18n.t()['brief.s13.desc'] }}</p>
+                </div>
+              </div>
 
               <div class="brief-summary-box">
                 <pre class="brief-summary-text">{{ summary }}</pre>
@@ -641,14 +648,14 @@
                 <button class="btn btn-primary" (click)="copyToClipboard()">
                   @if (copied) {
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                    Másolva!
+                    {{ i18n.t()['brief.s13.copied'] }}
                   } @else {
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                    Brief másolása
+                    {{ i18n.t()['brief.s13.copy'] }}
                   }
                 </button>
                 <button class="btn btn-outline" (click)="scrollToContact()">
-                  Konzultáció foglalása →
+                  {{ i18n.t()['brief.s13.consult'] }}
                 </button>
               </div>
             </div>
@@ -661,17 +668,17 @@
       @if (currentStep < TOTAL_STEPS) {
         <div class="brief-modal-footer">
           @if (currentStep > 0) {
-            <button class="btn btn-outline" (click)="back()">← Vissza</button>
+            <button class="btn btn-outline" (click)="back()">{{ i18n.t()['brief.nav.back'] }}</button>
           } @else {
             <div></div>
           }
           <div class="brief-nav-right">
             @if (currentStep === 1 || currentStep === 3) {
-              <button class="btn btn-outline" (click)="next()">Kihagyom</button>
+              <button class="btn btn-outline" (click)="next()">{{ i18n.t()['brief.nav.skip'] }}</button>
             }
             <button class="btn btn-primary" (click)="next()">
-              @if (currentStep === 12) { Megnézem az összefoglalót }
-              @else { Következő → }
+              @if (currentStep === 12) { {{ i18n.t()['brief.nav.finish'] }} }
+              @else { {{ i18n.t()['brief.nav.next'] }} }
             </button>
           </div>
         </div>
