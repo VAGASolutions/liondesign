@@ -13,7 +13,7 @@ export class NavComponent {
   activeSection = 'hero';
   scrollProgress = 0;
 
-  private readonly sections = ['contact', 'testimonials', 'portfolio', 'process', 'services', 'hero'];
+  private readonly sections = ['contact', 'portfolio', 'process', 'services', 'hero'];
 
   @HostListener('window:scroll')
   onScroll() {
