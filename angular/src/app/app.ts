@@ -6,7 +6,6 @@ import { ServicesSectionComponent } from './components/services-section/services
 import { StatsComponent } from './components/stats/stats.component';
 import { ProcessComponent } from './components/process/process.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
-import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -16,7 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
   standalone: true,
   imports: [
     NavComponent, HeroComponent, MarqueeComponent, ServicesSectionComponent,
-    StatsComponent, ProcessComponent, PortfolioComponent, TestimonialsComponent,
+    StatsComponent, ProcessComponent, PortfolioComponent,
     PricingComponent, ContactComponent, FooterComponent
   ],
   templateUrl: './app.html',
@@ -49,7 +48,7 @@ export class App implements AfterViewInit, OnDestroy {
     };
     anim();
 
-    document.querySelectorAll('a, button, .service-card, .portfolio-item, .testimonial-card').forEach(el => {
+    document.querySelectorAll('a, button, .service-card, .portfolio-item').forEach(el => {
       el.addEventListener('mouseenter', () => { cursor.classList.add('grow'); ring.classList.add('grow'); });
       el.addEventListener('mouseleave', () => { cursor.classList.remove('grow'); ring.classList.remove('grow'); });
     });
