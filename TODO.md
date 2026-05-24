@@ -1,13 +1,3 @@
-<h1 class="hero-title">
-        @if (i18n.lang() === 'en') {
-          We craft digital<br />
-          experiences that<br />
-          <span class="highlight">convert.</span>
-        } @else {
-          Digitális élményeket<br />
-          alkotunk, amelyek<br />
-          <span class="highlight">konvertálnak.</span>
-        }
-      </h1>
-
-      ## tul nagy / sok a szoveg
+osszefoglalonal is lehessen visszalépni
+legyen megjelenitve hogy mely mezok kitoltese kötelező, ezt jelezni kell a felhasználónak
+ahol kihagyom rész van csak a kihagyom gombal lehessen átugrani, különben meg kell adni az infot
