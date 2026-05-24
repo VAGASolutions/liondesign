@@ -569,7 +569,7 @@
                   @for (opt of featureOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="has(brief.features, opt)"
-                      (click)="toggle(brief.features, opt)">{{ opt }}</button>
+                      (click)="toggleFeature(opt)">{{ opt }}</button>
                   }
                 </div>
               </div>
@@ -683,7 +683,7 @@
             @if (currentStep === 1 || currentStep === 3) {
               <button class="btn btn-outline" (click)="next()">{{ i18n.t()['brief.nav.skip'] }}</button>
             }
-            <button class="btn btn-primary" (click)="next()">
+            <button class="btn btn-primary" (click)="next()" [disabled]="!canProceed">
               @if (currentStep === 12) { {{ i18n.t()['brief.nav.finish'] }} }
               @else { {{ i18n.t()['brief.nav.next'] }} }
             </button>

@@ -1,4 +1,4 @@
-import { Component, inject, computed, signal, NgZone } from '@angular/core';
+import { Component, inject, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { I18nService } from '../../services/i18n.service';
 
@@ -10,7 +10,6 @@ import { I18nService } from '../../services/i18n.service';
 })
 export class PricingComponent {
   i18n = inject(I18nService);
-  private zone = inject(NgZone);
 
   modalOpen = false;
   currentStep = 0;
@@ -308,6 +307,7 @@ export class PricingComponent {
   featureOptions = computed(() => {
     const hu = this.i18n.lang() === 'hu';
     return [
+      hu ? '— Nincs szükséges' : '— None needed',
       'Webshop / checkout',
       'Blog / CMS',
       hu ? 'Foglalási rendszer' : 'Booking system',
@@ -345,9 +345,28 @@ export class PricingComponent {
     return [hu ? 'Igen' : 'Yes', hu ? 'Nem' : 'No', hu ? 'Nem tudom' : 'Not sure'];
   });
 
+  get canProceed(): boolean {
+    const b = this.brief;
+    switch (this.currentStep) {
+      case 0:  return !!b.siteType && !!b.goal;
+      case 2:  return !!b.audience.trim() && !!b.b2b;
+      case 4:  return !!b.hasLogo && !!b.hasBrand;
+      case 5:  return !!b.theme && b.mood.length > 0;
+      case 6:  return !!b.fontStyle && !!b.needsHungarian;
+      case 7:  return b.visualStyles.length > 0;
+      case 8:  return !!b.pageStructure && b.sections.length > 0 && !!b.navStyle && !!b.scrollAnimations;
+      case 9:  return !!b.hasPhotos && !!b.needsVideo && !!b.iconStyle;
+      case 10: return !!b.animationLevel;
+      case 11: return b.features.length > 0;
+      case 12: return !!b.hasCopy && !!b.hasImages;
+      default: return true;
+    }
+  }
+
   openModal() {
     this.modalOpen = true;
     this.currentStep = 0;
+    this.sendStatus.set('idle');
     document.body.style.overflow = 'hidden';
   }
 
@@ -368,15 +387,26 @@ export class PricingComponent {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ summary: this.summary, projectName: this.brief.projectName }),
       });
-      this.zone.run(() => this.sendStatus.set(res.ok ? 'sent' : 'error'));
+      this.sendStatus.set(res.ok ? 'sent' : 'error');
     } catch {
-      this.zone.run(() => this.sendStatus.set('error'));
+      this.sendStatus.set('error');
     }
   }
 
   toggle(arr: string[], val: string) {
     const i = arr.indexOf(val);
     if (i > -1) arr.splice(i, 1); else arr.push(val);
+  }
+
+  toggleFeature(val: string) {
+    const noneKey = this.featureOptions()[0];
+    if (val === noneKey) {
+      this.brief.features = this.brief.features[0] === noneKey ? [] : [noneKey];
+    } else {
+      const idx = this.brief.features.indexOf(noneKey);
+      if (idx > -1) this.brief.features.splice(idx, 1);
+      this.toggle(this.brief.features, val);
+    }
   }
 
   has(arr: string[], val: string) { return arr.includes(val); }
