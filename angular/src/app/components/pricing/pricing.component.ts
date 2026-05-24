@@ -16,7 +16,6 @@ export class PricingComponent {
   sendStatus: 'idle' | 'sending' | 'sent' | 'error' = 'idle';
   readonly TOTAL_STEPS = 13;
   readonly stepRange = Array.from({ length: this.TOTAL_STEPS }, (_, i) => i);
-  copied = false;
 
   brief = {
     projectName: '',
@@ -356,16 +355,11 @@ export class PricingComponent {
     document.body.style.overflow = '';
   }
 
-  next() {
-    if (this.currentStep <= this.TOTAL_STEPS) {
-      this.currentStep++;
-      if (this.currentStep === this.TOTAL_STEPS) {
-        this.sendBriefEmail();
-      }
-    }
-  }
+  next() { if (this.currentStep <= this.TOTAL_STEPS) this.currentStep++; }
+  back() { if (this.currentStep > 0) this.currentStep--; }
 
-  private async sendBriefEmail() {
+  async sendBriefEmail() {
+    if (this.sendStatus === 'sending' || this.sendStatus === 'sent') return;
     this.sendStatus = 'sending';
     try {
       const res = await fetch('/.netlify/functions/send-brief', {
@@ -378,7 +372,6 @@ export class PricingComponent {
       this.sendStatus = 'error';
     }
   }
-  back() { if (this.currentStep > 0) this.currentStep--; }
 
   toggle(arr: string[], val: string) {
     const i = arr.indexOf(val);
@@ -465,10 +458,4 @@ export class PricingComponent {
     ].filter(l => l !== '').join('\n');
   }
 
-  copyToClipboard() {
-    navigator.clipboard.writeText(this.summary).then(() => {
-      this.copied = true;
-      setTimeout(() => this.copied = false, 2500);
-    });
-  }
 }

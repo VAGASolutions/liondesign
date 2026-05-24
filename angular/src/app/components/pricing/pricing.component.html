@@ -644,24 +644,21 @@
                 <pre class="brief-summary-text">{{ summary }}</pre>
               </div>
 
-              <div class="brief-send-status">
-                @if (sendStatus === 'sending') {
-                  <span class="send-status sending">⏳ {{ i18n.lang() === 'hu' ? 'Brief küldése...' : 'Sending brief…' }}</span>
-                } @else if (sendStatus === 'sent') {
-                  <span class="send-status sent">✅ {{ i18n.lang() === 'hu' ? 'Email elküldve!' : 'Email sent!' }}</span>
-                } @else if (sendStatus === 'error') {
-                  <span class="send-status error">⚠️ {{ i18n.lang() === 'hu' ? 'Küldés sikertelen' : 'Failed to send' }}</span>
-                }
-              </div>
-
               <div class="brief-summary-actions">
-                <button class="btn btn-primary" (click)="copyToClipboard()">
-                  @if (copied) {
+                <button class="btn btn-primary" (click)="sendBriefEmail()"
+                        [disabled]="sendStatus === 'sending' || sendStatus === 'sent'">
+                  @if (sendStatus === 'sending') {
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="spin"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    {{ i18n.lang() === 'hu' ? 'Küldés...' : 'Sending…' }}
+                  } @else if (sendStatus === 'sent') {
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                    {{ i18n.t()['brief.s13.copied'] }}
+                    {{ i18n.lang() === 'hu' ? 'Elküldve!' : 'Sent!' }}
+                  } @else if (sendStatus === 'error') {
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    {{ i18n.lang() === 'hu' ? 'Újraküldés' : 'Retry' }}
                   } @else {
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                    {{ i18n.t()['brief.s13.copy'] }}
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    {{ i18n.lang() === 'hu' ? 'Brief elküldése' : 'Send Brief' }}
                   }
                 </button>
                 <button class="btn btn-outline" (click)="scrollToContact()">
