@@ -211,7 +211,7 @@ const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     /* HERO */
     'hero.badge': 'Elérhető új projektekre · 2026',
     'hero.sub': 'Teljes körű webstúdió, magas teljesítményű design, biztonsági erősítés és SEO növekedés specialistái — azért, hogy márkád ne legyen figyelmen kívül hagyható.',
-    'hero.cta1': 'Munkáink megtekintése', 'hero.cta2': 'Ingyenes audit', 'hero.scroll': 'Görgetés',
+    'hero.cta1': 'Munkáink', 'hero.cta2': 'Ingyenes audit', 'hero.scroll': 'Görgetés',
 
     /* SERVICES */
     'services.label': 'Mit csinálunk',

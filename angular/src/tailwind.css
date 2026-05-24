@@ -144,7 +144,8 @@
     height: 2px; background: var(--primary); border-radius: 2px;
     box-shadow: 0 0 8px rgba(245,158,11,0.5);
   }
-  .nav-actions { display: flex; align-items: center; gap: 1rem; }
+  .nav-actions { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+  .nav-cta { min-width: 158px; justify-content: center; }
   .lang-toggle {
     height: 40px; padding: 0 0.85rem; border-radius: 999px;
     border: 1px solid var(--border); background: var(--card);
@@ -227,6 +228,7 @@
   }
   .hero-sub { font-size: 1.2rem; max-width: 560px; margin-bottom: 2.5rem; animation: fadeUp 0.8s 0.3s ease both; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.45s ease both; }
+  .hero-actions .btn { min-width: 190px; justify-content: center; }
   .hero-scroll {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
     z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
