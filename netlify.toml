@@ -6,6 +6,9 @@
 [build.environment]
   NODE_VERSION = "22"
 
+[functions]
+  directory = "netlify/functions"
+
 # SPA fallback — minden route-ot az index.html-re irányít
 [[redirects]]
   from   = "/*"

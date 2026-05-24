@@ -644,6 +644,16 @@
                 <pre class="brief-summary-text">{{ summary }}</pre>
               </div>
 
+              <div class="brief-send-status">
+                @if (sendStatus === 'sending') {
+                  <span class="send-status sending">⏳ {{ i18n.lang() === 'hu' ? 'Brief küldése...' : 'Sending brief…' }}</span>
+                } @else if (sendStatus === 'sent') {
+                  <span class="send-status sent">✅ {{ i18n.lang() === 'hu' ? 'Email elküldve!' : 'Email sent!' }}</span>
+                } @else if (sendStatus === 'error') {
+                  <span class="send-status error">⚠️ {{ i18n.lang() === 'hu' ? 'Küldés sikertelen' : 'Failed to send' }}</span>
+                }
+              </div>
+
               <div class="brief-summary-actions">
                 <button class="btn btn-primary" (click)="copyToClipboard()">
                   @if (copied) {

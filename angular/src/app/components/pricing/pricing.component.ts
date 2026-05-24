@@ -13,6 +13,7 @@ export class PricingComponent {
 
   modalOpen = false;
   currentStep = 0;
+  sendStatus: 'idle' | 'sending' | 'sent' | 'error' = 'idle';
   readonly TOTAL_STEPS = 13;
   readonly stepRange = Array.from({ length: this.TOTAL_STEPS }, (_, i) => i);
   copied = false;
@@ -355,7 +356,28 @@ export class PricingComponent {
     document.body.style.overflow = '';
   }
 
-  next() { if (this.currentStep <= this.TOTAL_STEPS) this.currentStep++; }
+  next() {
+    if (this.currentStep <= this.TOTAL_STEPS) {
+      this.currentStep++;
+      if (this.currentStep === this.TOTAL_STEPS) {
+        this.sendBriefEmail();
+      }
+    }
+  }
+
+  private async sendBriefEmail() {
+    this.sendStatus = 'sending';
+    try {
+      const res = await fetch('/.netlify/functions/send-brief', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ summary: this.summary, projectName: this.brief.projectName }),
+      });
+      this.sendStatus = res.ok ? 'sent' : 'error';
+    } catch {
+      this.sendStatus = 'error';
+    }
+  }
   back() { if (this.currentStep > 0) this.currentStep--; }
 
   toggle(arr: string[], val: string) {
