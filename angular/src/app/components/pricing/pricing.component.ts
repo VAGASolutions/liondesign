@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, signal, NgZone } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { I18nService } from '../../services/i18n.service';
 
@@ -10,10 +10,11 @@ import { I18nService } from '../../services/i18n.service';
 })
 export class PricingComponent {
   i18n = inject(I18nService);
+  private zone = inject(NgZone);
 
   modalOpen = false;
   currentStep = 0;
-  sendStatus: 'idle' | 'sending' | 'sent' | 'error' = 'idle';
+  sendStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   readonly TOTAL_STEPS = 13;
   readonly stepRange = Array.from({ length: this.TOTAL_STEPS }, (_, i) => i);
 
@@ -359,17 +360,17 @@ export class PricingComponent {
   back() { if (this.currentStep > 0) this.currentStep--; }
 
   async sendBriefEmail() {
-    if (this.sendStatus === 'sending' || this.sendStatus === 'sent') return;
-    this.sendStatus = 'sending';
+    if (this.sendStatus() === 'sending' || this.sendStatus() === 'sent') return;
+    this.sendStatus.set('sending');
     try {
       const res = await fetch('/.netlify/functions/send-brief', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ summary: this.summary, projectName: this.brief.projectName }),
       });
-      this.sendStatus = res.ok ? 'sent' : 'error';
+      this.zone.run(() => this.sendStatus.set(res.ok ? 'sent' : 'error'));
     } catch {
-      this.sendStatus = 'error';
+      this.zone.run(() => this.sendStatus.set('error'));
     }
   }
 
