@@ -1,0 +1,170 @@
+<section id="analyzer">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <div class="label">
+        @if (i18n.lang() === 'en') { Instant Site Audit } @else { Azonnali weboldal audit }
+      </div>
+      <h2 class="section-title mt-3">
+        @if (i18n.lang() === 'en') {
+          How healthy is<br /><span class="accent">your website?</span>
+        } @else {
+          Milyen egészséges<br /><span class="accent">a weboldalad?</span>
+        }
+      </h2>
+      <p class="section-sub">
+        @if (i18n.lang() === 'en') {
+          Enter your URL and get a free performance, SEO, accessibility, and best-practices audit in seconds.
+        } @else {
+          Add meg az URL-t, és pár másodperc alatt ingyenes teljesítmény-, SEO-, akadálymentesség- és best-practice auditot kapsz.
+        }
+      </p>
+    </div>
+
+    <div class="audit-box reveal">
+      <form class="audit-form" (ngSubmit)="analyze()" #f="ngForm">
+        <div class="input-row">
+          <div class="url-input-wrap">
+            <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            <input
+              type="text"
+              class="url-input"
+              [(ngModel)]="url"
+              name="url"
+              [placeholder]="i18n.lang() === 'en' ? 'https://yourwebsite.com' : 'https://weboldalad.hu'"
+              [disabled]="status() === 'loading'"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn-analyze"
+            [disabled]="status() === 'loading' || !url.trim()"
+          >
+            @if (status() === 'loading') {
+              <span class="spinner"></span>
+              @if (i18n.lang() === 'en') { Analyzing… } @else { Elemzés… }
+            } @else {
+              @if (i18n.lang() === 'en') { Audit now } @else { Audit indítása }
+            }
+          </button>
+        </div>
+      </form>
+
+      @if (status() === 'error') {
+        <div class="audit-error">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span>{{ errorMsg() }}</span>
+          <button class="btn-reset" (click)="reset()">
+            @if (i18n.lang() === 'en') { Try again } @else { Próbáld újra }
+          </button>
+        </div>
+      }
+    </div>
+
+    @defer (when status() === 'done' && result() !== null) {
+      @let r = result()!;
+      <div class="audit-results reveal">
+
+        <div class="results-header">
+          <span class="results-url">{{ r.url }}</span>
+          <button class="btn-reset" (click)="reset()">
+            @if (i18n.lang() === 'en') { New audit } @else { Új audit }
+          </button>
+        </div>
+
+        <div class="results-grid">
+
+          <div class="radar-wrap">
+            <svg class="radar-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+              @for (path of radarGridPaths(); track $index) {
+                <path [attr.d]="path" fill="none" stroke="var(--border)" stroke-width="1" opacity="0.5"/>
+              }
+              @for (ax of radarAxes(); track $index) {
+                <line
+                  [attr.x1]="ax.x1" [attr.y1]="ax.y1"
+                  [attr.x2]="ax.x2" [attr.y2]="ax.y2"
+                  stroke="var(--border)" stroke-width="1"
+                />
+                <text
+                  [attr.x]="ax.lx" [attr.y]="ax.ly"
+                  text-anchor="middle" dominant-baseline="middle"
+                  class="radar-label"
+                >{{ ax.label }}</text>
+              }
+              <path [attr.d]="radarPath()" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-width="2"/>
+            </svg>
+          </div>
+
+          <div class="score-cards">
+            @for (m of METRICS; track m.key) {
+              <div class="score-card">
+                <div class="score-icon">{{ m.icon }}</div>
+                <div class="score-info">
+                  <div class="score-metric">{{ metricLabel(m) }}</div>
+                  <div class="score-bar-wrap">
+                    <div class="score-bar">
+                      <div
+                        class="score-bar-fill"
+                        [style.width.%]="r.scores[m.key]"
+                        [style.background]="scoreColor(r.scores[m.key])"
+                      ></div>
+                    </div>
+                    <span class="score-value" [style.color]="scoreColor(r.scores[m.key])">{{ r.scores[m.key] }}</span>
+                  </div>
+                  <div class="score-label" [style.color]="scoreColor(r.scores[m.key])">{{ scoreLabel(r.scores[m.key]) }}</div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        @if (r.topIssues.length) {
+          <div class="issues-section">
+            <h3 class="issues-title">
+              @if (i18n.lang() === 'en') { Top issues to fix } @else { Javítandó problémák }
+            </h3>
+            <ul class="issues-list">
+              @for (issue of r.topIssues; track $index) {
+                <li class="issue-item">
+                  <svg class="issue-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                  <div>
+                    <div class="issue-title">{{ issue.title }}</div>
+                    @if (issue.description) {
+                      <div class="issue-desc">{{ issue.description }}</div>
+                    }
+                  </div>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+
+        <div class="audit-cta">
+          <p>
+            @if (i18n.lang() === 'en') {
+              Want us to fix all of these issues? Get a free consultation.
+            } @else {
+              Megoldjuk az összes problémát. Kérj ingyenes konzultációt.
+            }
+          </p>
+          <a href="#contact" class="btn-primary">
+            @if (i18n.lang() === 'en') { Get free consultation } @else { Ingyenes konzultáció }
+          </a>
+        </div>
+
+      </div>
+    }
+
+  </div>
+</section>
