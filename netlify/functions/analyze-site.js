@@ -1,3 +1,25 @@
+const CATEGORIES = ['performance', 'seo', 'accessibility', 'best-practices'];
+
+async function fetchPageSpeed(url, apiKey) {
+  const keyParam = apiKey ? `&key=${apiKey}` : '';
+  const catParams = CATEGORIES.map(c => `category=${c}`).join('&');
+  const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&strategy=mobile${keyParam}&${catParams}`;
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    if (attempt > 0) await new Promise(r => setTimeout(r, 1500));
+    const res = await fetch(apiUrl);
+    if (res.status === 429) {
+      if (attempt === 0) continue;
+      return { error: 'rate_limit' };
+    }
+    if (!res.ok) {
+      const detail = await res.text();
+      return { error: `PageSpeed API error: ${res.status}`, detail };
+    }
+    return { data: await res.json() };
+  }
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'GET') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -16,23 +38,28 @@ exports.handler = async (event) => {
   }
 
   const apiKey = process.env.PAGESPEED_API_KEY || '';
-  const keyParam = apiKey ? `&key=${apiKey}` : '';
-  const base = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(normalized)}&strategy=mobile${keyParam}`;
-
-  const categories = ['performance', 'seo', 'accessibility', 'best-practices'];
-  const catParams = categories.map(c => `category=${c}`).join('&');
 
   try {
-    const res = await fetch(`${base}&${catParams}`);
-    if (!res.ok) {
-      const err = await res.text();
-      return { statusCode: 502, body: JSON.stringify({ error: `PageSpeed API error: ${res.status}`, detail: err }) };
+    const result = await fetchPageSpeed(normalized, apiKey);
+
+    if (result.error === 'rate_limit') {
+      return {
+        statusCode: 429,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'The PageSpeed API is temporarily rate-limited. Please try again in a few seconds.' }),
+      };
     }
 
-    const data = await res.json();
-    const cats = data.lighthouseResult?.categories || {};
-    const audits = data.lighthouseResult?.audits || {};
+    if (result.error) {
+      return {
+        statusCode: 502,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: result.error, detail: result.detail }),
+      };
+    }
 
+    const cats = result.data.lighthouseResult?.categories || {};
+    const audits = result.data.lighthouseResult?.audits || {};
     const score = (key) => Math.round((cats[key]?.score ?? 0) * 100);
 
     const topIssues = Object.values(audits)
