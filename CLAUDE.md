@@ -1,7 +1,7 @@
 # LionDesign Studio — Project Guide
 
 ## What this is
-Agency website for **liondesign**, a web design studio offering web design, security analysis, SEO, brand identity, and performance optimisation. The site includes an embedded "Instant Site Audit" analyzer tool.
+Agency website for **liondesign**, a web design studio offering web design, security analysis, SEO, brand identity, and performance optimisation.
 
 ## Repository structure
 ```
@@ -28,7 +28,7 @@ CLAUDE.md                  — this file
 ## Design system
 - **Brand:** liondesign — logo splits as `Lion<span>Design</span>` where `Design` renders in the accent color
 - **Accent color:** `--primary: #f59e0b` (amber) in both light and dark themes
-- **Fonts:** Inter (body/headings), JetBrains Mono (monospace/analyzer input) — load via Google Fonts in `index.html` or `styles.scss`
+- **Fonts:** Inter (body/headings), JetBrains Mono (monospace) — load via Google Fonts in `index.html` or `styles.scss`
 - **Dark mode:** toggled via `.dark` class on `<html>`, persisted in `localStorage`
 - **Themes:** CSS custom properties in `:root` (light) and `.dark` overrides
 
@@ -46,17 +46,16 @@ CLAUDE.md                  — this file
 - **Particle canvas** — fixed background, mouse-interactive (`#particle-canvas`)
 - **Word canvas** — animated particle text cycling through brand words, include `'liondesign'`
 - **3D scroll** — sections tilt/scale on scroll
-- **Radar chart** — SVG drawn in the analyzer section
 - **Stats counter** — IntersectionObserver count-up animation
 - **i18n** — EN/HU language toggle, persisted in `localStorage`
 
 ## Page sections (map to Angular components)
 `HeroComponent`, `ServicesComponent`, `StatsComponent`, `ProcessComponent`,
-`PortfolioComponent`, `AnalyzerComponent`, `TestimonialsComponent`,
+`PortfolioComponent`, `TestimonialsComponent`,
 `PricingComponent`, `ContactComponent`
 
 Section anchor IDs: `#hero`, `#services`, `#stats`, `#process`, `#portfolio`,
-`#analyzer`, `#testimonials`, `#pricing`, `#contact`
+`#testimonials`, `#pricing`, `#contact`
 
 ## Netlify deployment
 - Build base: `angular/`
