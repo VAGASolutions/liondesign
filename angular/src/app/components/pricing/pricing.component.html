@@ -672,13 +672,13 @@
       </div>
 
       <!-- Footer navigation -->
-      @if (currentStep < TOTAL_STEPS) {
-        <div class="brief-modal-footer">
-          @if (currentStep > 0) {
-            <button class="btn btn-outline" (click)="back()">{{ i18n.t()['brief.nav.back'] }}</button>
-          } @else {
-            <div></div>
-          }
+      <div class="brief-modal-footer">
+        @if (currentStep > 0) {
+          <button class="btn btn-outline" (click)="back()">{{ i18n.t()['brief.nav.back'] }}</button>
+        } @else {
+          <div></div>
+        }
+        @if (currentStep < TOTAL_STEPS) {
           <div class="brief-nav-right">
             @if (currentStep === 1 || currentStep === 3) {
               <button class="btn btn-outline" (click)="next()">{{ i18n.t()['brief.nav.skip'] }}</button>
@@ -688,8 +688,8 @@
               @else { {{ i18n.t()['brief.nav.next'] }} }
             </button>
           </div>
-        </div>
-      }
+        }
+      </div>
 
     </div>
   </div>
