@@ -4,14 +4,14 @@
 @theme {
   --color-primary: #f59e0b;
   --color-primary-fg: #000000;
-  --color-background: #171717;
-  --color-foreground: #e5e5e5;
-  --color-card: #262626;
-  --color-border: #404040;
-  --color-muted: #262626;
-  --color-muted-foreground: #a3a3a3;
-  --color-accent: #92400e;
-  --color-accent-foreground: #fde68a;
+  --color-background: #fafafa;
+  --color-foreground: #171717;
+  --color-card: #ffffff;
+  --color-border: #e5e5e5;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #525252;
+  --color-accent: #fef3c7;
+  --color-accent-foreground: #92400e;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -19,6 +19,35 @@
 /* ── BASE ── */
 @layer base {
   :root {
+    --primary: #f59e0b;
+    --primary-foreground: #000000;
+    --background: #fafafa;
+    --foreground: #171717;
+    --card: #ffffff;
+    --border: #e5e5e5;
+    --muted: #f5f5f5;
+    --muted-foreground: #525252;
+    --accent: #fef3c7;
+    --accent-foreground: #92400e;
+    --ring: #f59e0b;
+    --input: #e5e5e5;
+    --secondary: #f5f5f5;
+    --shadow: 0px 4px 8px rgba(0,0,0,0.08);
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* translucent surfaces that can't be plain colors (sit over blurred content) */
+    --section-veil: rgba(255,255,255,0.6);
+    --section-veil-strong: rgba(245,245,245,0.92);
+    --section-veil-medium: rgba(245,245,245,0.85);
+    --nav-scrolled-bg: rgba(255,255,255,0.85);
+    --mobile-menu-bg: rgba(255,255,255,0.97);
+    --footer-bg: #f2f2f2;
+    --footer-border: rgba(0,0,0,0.08);
+    --footer-social-border: rgba(0,0,0,0.12);
+  }
+
+  .dark {
     --primary: #f59e0b;
     --primary-foreground: #000000;
     --background: #171717;
@@ -33,8 +62,15 @@
     --input: #404040;
     --secondary: #262626;
     --shadow: 0px 4px 8px rgba(0,0,0,0.3);
-    --font-sans: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+
+    --section-veil: rgba(23,23,23,0.55);
+    --section-veil-strong: rgba(38,38,38,0.92);
+    --section-veil-medium: rgba(38,38,38,0.85);
+    --nav-scrolled-bg: rgba(23,23,23,0.85);
+    --mobile-menu-bg: rgba(23,23,23,0.97);
+    --footer-bg: #0f0f0f;
+    --footer-border: rgba(255,255,255,0.08);
+    --footer-social-border: rgba(255,255,255,0.12);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,18 +92,18 @@
   section, .marquee-section, footer {
     position: relative;
     z-index: 1;
-    background: rgba(23,23,23,0.55);
+    background: var(--section-veil);
     transform-origin: center top;
     will-change: transform, opacity, border-radius;
     overflow: clip;
     isolation: isolate;
     box-shadow: 0 0 0 0 transparent;
-    transition: box-shadow 0.4s ease;
+    transition: box-shadow 0.4s ease, background 0.3s ease;
   }
   section:not(#hero):not(.marquee-section) { box-shadow: 0 2px 40px rgba(0,0,0,0.2); }
-  #stats     { background: rgba(38,38,38,0.92) !important; }
-  footer     { background: rgba(15,15,15,0.95) !important; }
-  #portfolio { background: rgba(38,38,38,0.85) !important; }
+  #stats     { background: var(--section-veil-strong) !important; }
+  footer     { background: var(--footer-bg) !important; }
+  #portfolio { background: var(--section-veil-medium) !important; }
   #hero      { background: transparent !important; backdrop-filter: none !important; }
 
   @keyframes fadeUp {
@@ -135,7 +171,7 @@
     transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
     border-bottom: 1px solid transparent;
   }
-  nav.scrolled { background: rgba(23,23,23,0.85); backdrop-filter: blur(20px); border-color: var(--border); }
+  nav.scrolled { background: var(--nav-scrolled-bg); backdrop-filter: blur(20px); border-color: var(--border); }
   .nav-inner   { display: flex; align-items: center; justify-content: space-between; }
   .nav-logo    { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.04em; }
   .nav-logo span { color: var(--primary); }
@@ -158,6 +194,13 @@
     transition: all 0.2s; color: var(--foreground); font-family: var(--font-mono);
   }
   .lang-toggle:hover { background: var(--accent); border-color: var(--primary); color: var(--primary); }
+  .theme-toggle {
+    width: 40px; height: 40px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--card);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: var(--foreground); transition: all 0.2s; flex-shrink: 0;
+  }
+  .theme-toggle:hover { background: var(--accent); border-color: var(--primary); color: var(--primary); }
 
   /* BUTTONS */
   .btn {
@@ -190,8 +233,8 @@
   /* MOBILE MENU */
   .mobile-menu {
     display: none; overflow: hidden; max-height: 0;
-    transition: max-height 0.35s ease, padding 0.35s ease;
-    background: rgba(23,23,23,0.97); backdrop-filter: blur(20px);
+    transition: max-height 0.35s ease, padding 0.35s ease, background 0.3s ease;
+    background: var(--mobile-menu-bg); backdrop-filter: blur(20px);
     border-top: 1px solid transparent; padding: 0;
   }
   .mobile-menu.open { max-height: 480px; padding: 1.25rem 1.5rem 1.5rem; border-top-color: var(--border); }
@@ -556,11 +599,11 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
 
   /* FOOTER */
-  footer { background: #0f0f0f; color: var(--foreground); padding: 5rem 0 2rem; }
+  footer { background: var(--footer-bg); color: var(--foreground); padding: 5rem 0 2rem; }
   .footer-top {
     display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem; padding-bottom: 4rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2rem;
+    border-bottom: 1px solid var(--footer-border); margin-bottom: 2rem;
   }
   .footer-brand-name { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 1rem; }
   .footer-brand-name span { color: var(--primary); }
@@ -568,7 +611,7 @@
   .footer-social { display: flex; gap: 0.75rem; }
   .footer-social a {
     width: 38px; height: 38px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid var(--footer-social-border);
     display: flex; align-items: center; justify-content: center;
     font-size: 0.85rem; transition: all 0.2s; color: inherit;
   }
