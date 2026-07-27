@@ -36,3 +36,59 @@ describe('PricingComponent wizard navigation', () => {
     expect(component.brief.projectName).toBe('Acme');
   });
 });
+
+describe('PricingComponent required field validation', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [PricingComponent] });
+  });
+
+  it('marks required fields with a visible indicator', () => {
+    const fixture = TestBed.createComponent(PricingComponent);
+    fixture.componentInstance.modalOpen = true;
+    fixture.componentInstance.currentStep = 0;
+    fixture.detectChanges();
+
+    const marks = fixture.nativeElement.querySelectorAll('.required-mark');
+    expect(marks.length).toBeGreaterThan(0);
+  });
+
+  it('does not advance and shows inline errors when Next is clicked with required fields empty', () => {
+    const fixture = TestBed.createComponent(PricingComponent);
+    const component = fixture.componentInstance;
+    component.modalOpen = true;
+    component.currentStep = 0;
+    fixture.detectChanges();
+
+    const nextButton: HTMLButtonElement = fixture.nativeElement.querySelector('.brief-nav-right .btn-primary');
+    nextButton.click();
+    fixture.detectChanges();
+
+    expect(component.currentStep).toBe(0);
+    expect(component.attemptedNext()).toBe(true);
+    expect(fixture.nativeElement.querySelectorAll('.field-error').length).toBeGreaterThan(0);
+    expect(fixture.nativeElement.querySelector('.brief-step-error-banner')).toBeTruthy();
+  });
+
+  it('advances and clears the error state once required fields are filled', async () => {
+    const fixture = TestBed.createComponent(PricingComponent);
+    const component = fixture.componentInstance;
+    component.modalOpen = true;
+    component.currentStep = 0;
+    fixture.detectChanges();
+
+    const nextButton: HTMLButtonElement = fixture.nativeElement.querySelector('.brief-nav-right .btn-primary');
+    nextButton.click();
+    await fixture.whenStable();
+    expect(component.attemptedNext()).toBe(true);
+
+    component.brief.siteType = 'Landing page';
+    component.brief.goal = 'Sales';
+    await fixture.whenStable();
+
+    nextButton.click();
+    await fixture.whenStable();
+
+    expect(component.currentStep).toBe(1);
+    expect(component.attemptedNext()).toBe(false);
+  });
+});
