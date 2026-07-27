@@ -127,14 +127,17 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s0.type'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s0.type'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.siteType)">
                   @for (opt of siteTypes(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.siteType === opt"
                       (click)="brief.siteType = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.siteType)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
@@ -143,14 +146,17 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s0.goal'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s0.goal'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.goal)">
                   @for (opt of goals(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.goal === opt"
                       (click)="brief.goal = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.goal)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
             </div>
           }
@@ -189,20 +195,27 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s2.audience'] }}</label>
+                <label class="form-label">{{ i18n.t()['brief.s2.audience'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
                 <textarea class="form-textarea min-h-[80px]" [(ngModel)]="brief.audience"
+                  [class.field-invalid]="invalid(!!brief.audience.trim())"
                   [placeholder]="i18n.t()['brief.s2.audience.ph']"></textarea>
+                @if (invalid(!!brief.audience.trim())) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s2.segment'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s2.segment'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.b2b)">
                   @for (opt of b2bOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.b2b === opt"
                       (click)="brief.b2b = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.b2b)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
@@ -249,25 +262,31 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s4.logo'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s4.logo'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.hasLogo)">
                   @for (opt of logoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasLogo === opt"
                       (click)="brief.hasLogo = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.hasLogo)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s4.brand'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s4.brand'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.hasBrand)">
                   @for (opt of brandOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasBrand === opt"
                       (click)="brief.hasBrand = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.hasBrand)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               @if (brief.hasBrand === brandOptions()[0] || brief.hasBrand === brandOptions()[1]) {
@@ -324,25 +343,31 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s5.theme'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s5.theme'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.theme)">
                   @for (opt of themeOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.theme === opt"
                       (click)="brief.theme = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.theme)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s5.mood'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s5.mood.multi'] }}</span></label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s5.mood'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span> <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s5.mood.multi'] }}</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(brief.mood.length > 0)">
                   @for (opt of moodOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="has(brief.mood, opt)"
                       (click)="toggle(brief.mood, opt)">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(brief.mood.length > 0)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
             </div>
           }
@@ -359,8 +384,8 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s6.style'] }}</label>
-                <div class="option-chips option-chips--vertical">
+                <label class="form-label">{{ i18n.t()['brief.s6.style'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips option-chips--vertical" [class.field-invalid]="invalid(!!brief.fontStyle)">
                   @for (fs of fontStyles(); track fs.key) {
                     <button type="button" class="option-chip option-chip--wide"
                       [class.selected]="brief.fontStyle === fs.key"
@@ -370,17 +395,23 @@
                     </button>
                   }
                 </div>
+                @if (invalid(!!brief.fontStyle)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s6.hu'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s6.hu'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.needsHungarian)">
                   @for (opt of yesNoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.needsHungarian === opt"
                       (click)="brief.needsHungarian = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.needsHungarian)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
             </div>
           }
@@ -397,8 +428,8 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s7.styles'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s7.multi'] }}</span></label>
-                <div class="option-chips option-chips--vertical">
+                <label class="form-label">{{ i18n.t()['brief.s7.styles'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span> <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s7.multi'] }}</span></label>
+                <div class="option-chips option-chips--vertical" [class.field-invalid]="invalid(brief.visualStyles.length > 0)">
                   @for (vs of visualStyles(); track vs.key) {
                     <button type="button" class="option-chip option-chip--wide"
                       [class.selected]="has(brief.visualStyles, vs.key)"
@@ -408,6 +439,9 @@
                     </button>
                   }
                 </div>
+                @if (invalid(brief.visualStyles.length > 0)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
@@ -436,47 +470,59 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s8.structure'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s8.structure'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.pageStructure)">
                   @for (opt of pageStructures(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.pageStructure === opt"
                       (click)="brief.pageStructure = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.pageStructure)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s8.sections'] }} <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s8.sections.multi'] }}</span></label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s8.sections'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span> <span class="font-normal text-muted-foreground">{{ i18n.t()['brief.s8.sections.multi'] }}</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(brief.sections.length > 0)">
                   @for (opt of sectionOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="has(brief.sections, opt)"
                       (click)="toggle(brief.sections, opt)">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(brief.sections.length > 0)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s8.nav.style'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s8.nav.style'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.navStyle)">
                   @for (opt of navStyles(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.navStyle === opt"
                       (click)="brief.navStyle = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.navStyle)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s8.scroll'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s8.scroll'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.scrollAnimations)">
                   @for (opt of scrollOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.scrollAnimations === opt"
                       (click)="brief.scrollAnimations = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.scrollAnimations)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
             </div>
           }
@@ -493,36 +539,45 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s9.photos'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s9.photos'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.hasPhotos)">
                   @for (opt of photoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasPhotos === opt"
                       (click)="brief.hasPhotos = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.hasPhotos)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s9.video'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s9.video'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.needsVideo)">
                   @for (opt of videoOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.needsVideo === opt"
                       (click)="brief.needsVideo = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.needsVideo)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s9.icons'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s9.icons'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.iconStyle)">
                   @for (opt of iconOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.iconStyle === opt"
                       (click)="brief.iconStyle = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.iconStyle)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
             </div>
           }
@@ -539,7 +594,8 @@
               </div>
 
               <div class="form-group">
-                <div class="option-chips option-chips--vertical">
+                <span class="required-badge">{{ i18n.t()['brief.required'] }}</span>
+                <div class="option-chips option-chips--vertical" [class.field-invalid]="invalid(!!brief.animationLevel)">
                   @for (al of animLevels(); track al.key) {
                     <button type="button" class="option-chip option-chip--wide"
                       [class.selected]="brief.animationLevel === al.key"
@@ -549,6 +605,9 @@
                     </button>
                   }
                 </div>
+                @if (invalid(!!brief.animationLevel)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
             </div>
           }
@@ -565,13 +624,17 @@
               </div>
 
               <div class="form-group">
-                <div class="option-chips">
+                <span class="required-badge">{{ i18n.t()['brief.required'] }}</span>
+                <div class="option-chips" [class.field-invalid]="invalid(brief.features.length > 0)">
                   @for (opt of featureOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="has(brief.features, opt)"
                       (click)="toggleFeature(opt)">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(brief.features.length > 0)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
             </div>
           }
@@ -588,25 +651,31 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s12.copy'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s12.copy'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.hasCopy)">
                   @for (opt of copyOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasCopy === opt"
                       (click)="brief.hasCopy = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.hasCopy)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
-                <label class="form-label">{{ i18n.t()['brief.s12.images'] }}</label>
-                <div class="option-chips">
+                <label class="form-label">{{ i18n.t()['brief.s12.images'] }} <span class="required-mark" [attr.aria-label]="i18n.t()['brief.required']">*</span></label>
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.hasImages)">
                   @for (opt of imageOptions(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.hasImages === opt"
                       (click)="brief.hasImages = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.hasImages)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.required'] }}</p>
+                }
               </div>
 
               <div class="form-group">
@@ -672,6 +741,9 @@
       </div>
 
       <!-- Footer navigation -->
+      @if (attemptedNext() && !canProceed) {
+        <div class="brief-step-error-banner">{{ i18n.t()['brief.error.step'] }}</div>
+      }
       <div class="brief-modal-footer">
         @if (currentStep > 0) {
           <button class="btn btn-outline" (click)="back()">{{ i18n.t()['brief.nav.back'] }}</button>
@@ -683,7 +755,7 @@
             @if (currentStep === 1 || currentStep === 3) {
               <button class="btn btn-outline" (click)="next()">{{ i18n.t()['brief.nav.skip'] }}</button>
             }
-            <button class="btn btn-primary" (click)="next()" [disabled]="!canProceed">
+            <button class="btn btn-primary" (click)="next()" [class.btn-disabled-look]="!canProceed">
               @if (currentStep === 12) { {{ i18n.t()['brief.nav.finish'] }} }
               @else { {{ i18n.t()['brief.nav.next'] }} }
             </button>
