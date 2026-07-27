@@ -350,7 +350,9 @@ export class PricingComponent {
     const b = this.brief;
     switch (this.currentStep) {
       case 0:  return !!b.siteType && !!b.goal;
+      case 1:  return !!b.currentSiteUrl.trim();
       case 2:  return !!b.audience.trim() && !!b.b2b;
+      case 3:  return !!b.frontend;
       case 4:  return !!b.hasLogo && !!b.hasBrand;
       case 5:  return !!b.theme && b.mood.length > 0;
       case 6:  return !!b.fontStyle && !!b.needsHungarian;
@@ -389,6 +391,11 @@ export class PricingComponent {
   back() {
     this.attemptedNext.set(false);
     if (this.currentStep > 0) this.currentStep--;
+  }
+
+  skip() {
+    this.attemptedNext.set(false);
+    if (this.currentStep <= this.TOTAL_STEPS) this.currentStep++;
   }
 
   invalid(fieldIsValid: boolean): boolean {

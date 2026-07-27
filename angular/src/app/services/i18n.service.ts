@@ -80,6 +80,7 @@ const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     'brief.nav.finish': 'See the summary',
     'brief.required': 'Required',
     'brief.error.required': 'This field is required.',
+    'brief.error.fillOrSkip': 'Fill in this field or click "Skip" to continue.',
     'brief.error.step': 'Please fill in the highlighted required fields to continue.',
 
     /* BRIEF — STEP 0 */
@@ -283,6 +284,7 @@ const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     'brief.nav.finish': 'Megnézem az összefoglalót',
     'brief.required': 'Kötelező',
     'brief.error.required': 'Kötelező mező.',
+    'brief.error.fillOrSkip': 'Töltsd ki a mezőt, vagy kattints a "Kihagyom" gombra a továbblépéshez.',
     'brief.error.step': 'A továbblépéshez töltsd ki a kiemelt kötelező mezőket.',
 
     /* BRIEF — STEP 0 */
