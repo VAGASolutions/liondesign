@@ -14,6 +14,7 @@ export class PricingComponent {
   modalOpen = false;
   currentStep = 0;
   sendStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  attemptedNext = signal(false);
   readonly TOTAL_STEPS = 13;
   readonly stepRange = Array.from({ length: this.TOTAL_STEPS }, (_, i) => i);
 
@@ -367,6 +368,7 @@ export class PricingComponent {
     this.modalOpen = true;
     this.currentStep = 0;
     this.sendStatus.set('idle');
+    this.attemptedNext.set(false);
     document.body.style.overflow = 'hidden';
   }
 
@@ -375,8 +377,23 @@ export class PricingComponent {
     document.body.style.overflow = '';
   }
 
-  next() { if (this.currentStep <= this.TOTAL_STEPS) this.currentStep++; }
-  back() { if (this.currentStep > 0) this.currentStep--; }
+  next() {
+    if (!this.canProceed) {
+      this.attemptedNext.set(true);
+      return;
+    }
+    this.attemptedNext.set(false);
+    if (this.currentStep <= this.TOTAL_STEPS) this.currentStep++;
+  }
+
+  back() {
+    this.attemptedNext.set(false);
+    if (this.currentStep > 0) this.currentStep--;
+  }
+
+  invalid(fieldIsValid: boolean): boolean {
+    return this.attemptedNext() && !fieldIsValid;
+  }
 
   async sendBriefEmail() {
     if (this.sendStatus() === 'sending' || this.sendStatus() === 'sent') return;

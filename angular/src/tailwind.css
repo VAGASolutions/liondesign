@@ -590,6 +590,25 @@
     background: rgba(0,0,0,0.4); flex-shrink: 0;
   }
   .brief-nav-right { display: flex; gap: 0.6rem; align-items: center; }
+  .required-mark { color: var(--primary); font-weight: 800; }
+  .required-badge {
+    align-self: flex-start; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--primary); background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 0.4rem; padding: 0.15rem 0.5rem;
+  }
+  .field-error { font-size: 0.76rem; color: #f87171; margin: 0.35rem 0 0; }
+  .option-chips.field-invalid, .option-chips--vertical.field-invalid {
+    outline: 1px solid rgba(248,113,113,0.5); outline-offset: 6px; border-radius: 0.65rem;
+  }
+  .form-input.field-invalid, .form-textarea.field-invalid {
+    border-color: rgba(248,113,113,0.6); box-shadow: 0 0 0 3px rgba(248,113,113,0.1);
+  }
+  .btn-disabled-look { opacity: 0.45; }
+  .brief-step-error-banner {
+    margin: 0 1.75rem 1rem; padding: 0.6rem 0.9rem; font-size: 0.8rem; font-weight: 600;
+    color: #f87171; background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.28);
+    border-radius: 0.6rem;
+  }
 
   /* REVEAL */
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
