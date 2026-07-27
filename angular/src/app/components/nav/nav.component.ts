@@ -1,5 +1,6 @@
 import { Component, inject, HostListener } from '@angular/core';
 import { I18nService } from '../../services/i18n.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,7 @@ import { I18nService } from '../../services/i18n.service';
 })
 export class NavComponent {
   i18n = inject(I18nService);
+  theme = inject(ThemeService);
   scrolled = false;
   menuOpen = false;
   activeSection = 'hero';
