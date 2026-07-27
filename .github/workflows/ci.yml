@@ -29,12 +29,7 @@ jobs:
         run: npm run build
 
       - name: Unit tests
-        run: |
-          if find src -name "*.spec.ts" -o -name "*.test.ts" | grep -q .; then
-            npm test
-          else
-            echo "::warning::No spec files found yet — skipping unit tests (see issue #30)."
-          fi
+        run: npm test -- --watch=false
 
       - name: Check for leftover console.log / debugger
         run: |
