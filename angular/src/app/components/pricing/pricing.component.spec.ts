@@ -158,3 +158,107 @@ describe('PricingComponent skip-only steps', () => {
     expect(component.attemptedNext()).toBe(false);
   });
 });
+
+describe('PricingComponent canProceed per step', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [PricingComponent] });
+  });
+
+  function makeComponent(step: number) {
+    const fixture = TestBed.createComponent(PricingComponent);
+    fixture.componentInstance.currentStep = step;
+    return fixture.componentInstance;
+  }
+
+  it('step 2 requires audience and b2b segment', () => {
+    const component = makeComponent(2);
+    expect(component.canProceed).toBe(false);
+    component.brief.audience = 'Small business owners';
+    expect(component.canProceed).toBe(false);
+    component.brief.b2b = 'B2B';
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 4 requires logo and brand status', () => {
+    const component = makeComponent(4);
+    expect(component.canProceed).toBe(false);
+    component.brief.hasLogo = 'Yes';
+    expect(component.canProceed).toBe(false);
+    component.brief.hasBrand = 'No';
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 5 requires a theme and at least one mood', () => {
+    const component = makeComponent(5);
+    expect(component.canProceed).toBe(false);
+    component.brief.theme = 'Dark';
+    expect(component.canProceed).toBe(false);
+    component.brief.mood.push('Trust');
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 6 requires a font style and Hungarian accent preference', () => {
+    const component = makeComponent(6);
+    expect(component.canProceed).toBe(false);
+    component.brief.fontStyle = 'Modern sans-serif';
+    expect(component.canProceed).toBe(false);
+    component.brief.needsHungarian = 'Yes';
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 7 requires at least one visual style', () => {
+    const component = makeComponent(7);
+    expect(component.canProceed).toBe(false);
+    component.brief.visualStyles.push('Minimal');
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 8 requires structure, sections, nav style, and scroll preference', () => {
+    const component = makeComponent(8);
+    expect(component.canProceed).toBe(false);
+    component.brief.pageStructure = 'One long landing page';
+    component.brief.sections.push('Hero');
+    component.brief.navStyle = 'Fixed top nav';
+    expect(component.canProceed).toBe(false);
+    component.brief.scrollAnimations = 'Yes, include it';
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 9 requires photos, video, and icon preferences', () => {
+    const component = makeComponent(9);
+    expect(component.canProceed).toBe(false);
+    component.brief.hasPhotos = 'Yes, photos are ready';
+    component.brief.needsVideo = 'No';
+    expect(component.canProceed).toBe(false);
+    component.brief.iconStyle = 'Outline';
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 10 requires an animation level', () => {
+    const component = makeComponent(10);
+    expect(component.canProceed).toBe(false);
+    component.brief.animationLevel = 'Subtle';
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 11 requires at least one selected feature', () => {
+    const component = makeComponent(11);
+    expect(component.canProceed).toBe(false);
+    component.brief.features.push('Blog / CMS');
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('step 12 requires copy and image readiness', () => {
+    const component = makeComponent(12);
+    expect(component.canProceed).toBe(false);
+    component.brief.hasCopy = 'Yes, everything is ready';
+    expect(component.canProceed).toBe(false);
+    component.brief.hasImages = 'Partially ready';
+    expect(component.canProceed).toBe(true);
+  });
+
+  it('defaults to true on the summary step (step 13)', () => {
+    const component = makeComponent(13);
+    expect(component.canProceed).toBe(true);
+  });
+});
