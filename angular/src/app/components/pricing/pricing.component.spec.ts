@@ -92,3 +92,69 @@ describe('PricingComponent required field validation', () => {
     expect(component.attemptedNext()).toBe(false);
   });
 });
+
+describe('PricingComponent skip-only steps', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [PricingComponent] });
+  });
+
+  it('blocks Next on step 1 until the URL is filled, but Skip always advances', () => {
+    const fixture = TestBed.createComponent(PricingComponent);
+    const component = fixture.componentInstance;
+    component.modalOpen = true;
+    component.currentStep = 1;
+    fixture.detectChanges();
+
+    const nextButton: HTMLButtonElement = fixture.nativeElement.querySelector('.brief-nav-right .btn-primary');
+    nextButton.click();
+    fixture.detectChanges();
+
+    expect(component.currentStep).toBe(1);
+    expect(component.attemptedNext()).toBe(true);
+    expect(fixture.nativeElement.querySelector('.field-error')).toBeTruthy();
+
+    const skipButton: HTMLButtonElement = fixture.nativeElement.querySelector('.brief-nav-right .btn-outline');
+    skipButton.click();
+    fixture.detectChanges();
+
+    expect(component.currentStep).toBe(2);
+    expect(component.attemptedNext()).toBe(false);
+  });
+
+  it('advances step 1 via Next once the URL is filled', () => {
+    const fixture = TestBed.createComponent(PricingComponent);
+    const component = fixture.componentInstance;
+    component.modalOpen = true;
+    component.currentStep = 1;
+    component.brief.currentSiteUrl = 'https://example.com';
+    fixture.detectChanges();
+
+    const nextButton: HTMLButtonElement = fixture.nativeElement.querySelector('.brief-nav-right .btn-primary');
+    nextButton.click();
+    fixture.detectChanges();
+
+    expect(component.currentStep).toBe(2);
+  });
+
+  it('blocks Next on step 3 until a frontend is selected, but Skip always advances', () => {
+    const fixture = TestBed.createComponent(PricingComponent);
+    const component = fixture.componentInstance;
+    component.modalOpen = true;
+    component.currentStep = 3;
+    fixture.detectChanges();
+
+    const nextButton: HTMLButtonElement = fixture.nativeElement.querySelector('.brief-nav-right .btn-primary');
+    nextButton.click();
+    fixture.detectChanges();
+
+    expect(component.currentStep).toBe(3);
+    expect(component.attemptedNext()).toBe(true);
+
+    const skipButton: HTMLButtonElement = fixture.nativeElement.querySelector('.brief-nav-right .btn-outline');
+    skipButton.click();
+    fixture.detectChanges();
+
+    expect(component.currentStep).toBe(4);
+    expect(component.attemptedNext()).toBe(false);
+  });
+});

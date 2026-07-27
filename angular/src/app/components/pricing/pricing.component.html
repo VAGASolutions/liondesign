@@ -174,7 +174,12 @@
 
               <div class="form-group">
                 <label class="form-label">{{ i18n.t()['brief.s1.url'] }}</label>
-                <input class="form-input" [(ngModel)]="brief.currentSiteUrl" type="url" [placeholder]="i18n.t()['brief.s1.url.ph']" />
+                <input class="form-input" [(ngModel)]="brief.currentSiteUrl" type="url"
+                  [class.field-invalid]="invalid(!!brief.currentSiteUrl.trim())"
+                  [placeholder]="i18n.t()['brief.s1.url.ph']" />
+                @if (invalid(!!brief.currentSiteUrl.trim())) {
+                  <p class="field-error">{{ i18n.t()['brief.error.fillOrSkip'] }}</p>
+                }
               </div>
 
               <p class="text-[0.82rem] text-muted-foreground mt-2">
@@ -239,13 +244,16 @@
 
               <div class="form-group">
                 <label class="form-label">{{ i18n.t()['brief.s3.frontend'] }}</label>
-                <div class="option-chips">
+                <div class="option-chips" [class.field-invalid]="invalid(!!brief.frontend)">
                   @for (opt of frontends(); track opt) {
                     <button type="button" class="option-chip"
                       [class.selected]="brief.frontend === opt"
                       (click)="brief.frontend = opt">{{ opt }}</button>
                   }
                 </div>
+                @if (invalid(!!brief.frontend)) {
+                  <p class="field-error">{{ i18n.t()['brief.error.fillOrSkip'] }}</p>
+                }
               </div>
             </div>
           }
@@ -753,7 +761,7 @@
         @if (currentStep < TOTAL_STEPS) {
           <div class="brief-nav-right">
             @if (currentStep === 1 || currentStep === 3) {
-              <button class="btn btn-outline" (click)="next()">{{ i18n.t()['brief.nav.skip'] }}</button>
+              <button class="btn btn-outline" (click)="skip()">{{ i18n.t()['brief.nav.skip'] }}</button>
             }
             <button class="btn btn-primary" (click)="next()" [class.btn-disabled-look]="!canProceed">
               @if (currentStep === 12) { {{ i18n.t()['brief.nav.finish'] }} }
