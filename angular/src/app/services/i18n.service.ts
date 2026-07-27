@@ -78,6 +78,9 @@ const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     'brief.nav.back': '← Back',
     'brief.nav.skip': 'Skip',
     'brief.nav.finish': 'See the summary',
+    'brief.required': 'Required',
+    'brief.error.required': 'This field is required.',
+    'brief.error.step': 'Please fill in the highlighted required fields to continue.',
 
     /* BRIEF — STEP 0 */
     'brief.s0.title': 'Project basics',
@@ -278,6 +281,9 @@ const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     'brief.nav.back': '← Vissza',
     'brief.nav.skip': 'Kihagyom',
     'brief.nav.finish': 'Megnézem az összefoglalót',
+    'brief.required': 'Kötelező',
+    'brief.error.required': 'Kötelező mező.',
+    'brief.error.step': 'A továbblépéshez töltsd ki a kiemelt kötelező mezőket.',
 
     /* BRIEF — STEP 0 */
     'brief.s0.title': 'Projekt alapadatok',
