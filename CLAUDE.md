@@ -52,10 +52,13 @@ CLAUDE.md                  — this file
 ## Page sections (map to Angular components)
 `HeroComponent`, `ServicesComponent`, `StatsComponent`, `ProcessComponent`,
 `PortfolioComponent`,
-`PricingComponent`, `ContactComponent`
+`PricingComponent`
 
 Section anchor IDs: `#hero`, `#services`, `#stats`, `#process`, `#portfolio`,
 `#pricing`, `#contact`
+
+There is no standalone `ContactComponent` — the `#contact` anchor resolves
+to the CTA card (email + response-time block) inside `PricingComponent`.
 
 ## Netlify deployment
 - Build base: `angular/`
