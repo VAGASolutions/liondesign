@@ -51,11 +51,11 @@ CLAUDE.md                  — this file
 
 ## Page sections (map to Angular components)
 `HeroComponent`, `ServicesComponent`, `StatsComponent`, `ProcessComponent`,
-`PortfolioComponent`, `TestimonialsComponent`,
+`PortfolioComponent`,
 `PricingComponent`, `ContactComponent`
 
 Section anchor IDs: `#hero`, `#services`, `#stats`, `#process`, `#portfolio`,
-`#testimonials`, `#pricing`, `#contact`
+`#pricing`, `#contact`
 
 ## Netlify deployment
 - Build base: `angular/`
