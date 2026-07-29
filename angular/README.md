@@ -30,7 +30,7 @@ src/
     services/                    — shared services (i18n, theme, ...)
   styles.scss                    — global styles
   main.ts                        — bootstrap entry point
-public/                          — static assets (images, favicon)
+public/                          — static assets (images, favicon, robots.txt, sitemap.xml)
 ```
 
 Current section components: `hero`, `services-section`, `stats`, `process`, `portfolio`, `pricing`, `marquee`, `nav`, `footer`.
