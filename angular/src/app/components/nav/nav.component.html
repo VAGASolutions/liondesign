@@ -1,13 +1,13 @@
 <div class="scroll-progress-bar" [style.width.%]="scrollProgress"></div>
 <nav [class.scrolled]="scrolled" [class.menu-open]="menuOpen">
   <div class="container nav-inner">
-    <a class="nav-logo" (click)="scrollTo('hero')" style="cursor:pointer">Lion<span>Design</span></a>
+    <a class="nav-logo" href="#hero" (click)="scrollTo('hero', $event)">Lion<span>Design</span></a>
 
     <ul class="nav-links">
-      <li><a (click)="scrollTo('services')" [class.active]="activeSection === 'services'">{{ i18n.t()['nav.services'] }}</a></li>
-      <li><a (click)="scrollTo('process')" [class.active]="activeSection === 'process'">{{ i18n.t()['nav.process'] }}</a></li>
-      <li><a (click)="scrollTo('portfolio')" [class.active]="activeSection === 'portfolio'">{{ i18n.t()['nav.work'] }}</a></li>
-      <li><a (click)="scrollTo('contact')" [class.active]="activeSection === 'contact'">{{ i18n.t()['nav.contact'] }}</a></li>
+      <li><a href="#services" (click)="scrollTo('services', $event)" [class.active]="activeSection === 'services'">{{ i18n.t()['nav.services'] }}</a></li>
+      <li><a href="#process" (click)="scrollTo('process', $event)" [class.active]="activeSection === 'process'">{{ i18n.t()['nav.process'] }}</a></li>
+      <li><a href="#portfolio" (click)="scrollTo('portfolio', $event)" [class.active]="activeSection === 'portfolio'">{{ i18n.t()['nav.work'] }}</a></li>
+      <li><a href="#contact" (click)="scrollTo('contact', $event)" [class.active]="activeSection === 'contact'">{{ i18n.t()['nav.contact'] }}</a></li>
     </ul>
 
     <div class="nav-actions">
@@ -22,22 +22,23 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         }
       </button>
-      <a class="btn btn-primary nav-cta" (click)="scrollTo('contact')"
+      <a class="btn btn-primary nav-cta" href="#contact" (click)="scrollTo('contact', $event)"
          style="padding:0.55rem 1.25rem;font-size:0.8rem;cursor:pointer">
         {{ i18n.t()['nav.cta'] }}
       </a>
-      <div class="hamburger" [class.open]="menuOpen" (click)="toggleMenu()">
+      <button type="button" class="hamburger" [class.open]="menuOpen" (click)="toggleMenu()"
+              [attr.aria-expanded]="menuOpen" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
   </div>
 
   <div class="mobile-menu" [class.open]="menuOpen">
     <ul class="mobile-nav-links">
-      <li><a (click)="scrollTo('services')">{{ i18n.t()['nav.services'] }}</a></li>
-      <li><a (click)="scrollTo('process')">{{ i18n.t()['nav.process'] }}</a></li>
-      <li><a (click)="scrollTo('portfolio')">{{ i18n.t()['nav.work'] }}</a></li>
-      <li><a (click)="scrollTo('contact')">{{ i18n.t()['nav.contact'] }}</a></li>
+      <li><a href="#services" (click)="scrollTo('services', $event)">{{ i18n.t()['nav.services'] }}</a></li>
+      <li><a href="#process" (click)="scrollTo('process', $event)">{{ i18n.t()['nav.process'] }}</a></li>
+      <li><a href="#portfolio" (click)="scrollTo('portfolio', $event)">{{ i18n.t()['nav.work'] }}</a></li>
+      <li><a href="#contact" (click)="scrollTo('contact', $event)">{{ i18n.t()['nav.contact'] }}</a></li>
     </ul>
     <div class="mobile-menu-footer">
       <button class="lang-toggle" (click)="i18n.toggle()">
@@ -51,7 +52,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         }
       </button>
-      <a class="btn btn-primary" (click)="scrollTo('contact')"
+      <a class="btn btn-primary" href="#contact" (click)="scrollTo('contact', $event)"
          style="cursor:pointer;flex:1;justify-content:center">
         {{ i18n.t()['nav.cta'] }}
       </a>

@@ -21,11 +21,11 @@
       <p class="hero-sub">{{ i18n.t()['hero.sub'] }}</p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" (click)="scrollTo('portfolio')" style="cursor:pointer">
+        <a class="btn btn-primary" href="#portfolio" (click)="scrollTo('portfolio', $event)" style="cursor:pointer">
           <span>{{ i18n.t()['hero.cta1'] }}</span>
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a class="btn btn-outline" (click)="scrollTo('contact')" style="cursor:pointer">
+        <a class="btn btn-outline" href="#contact" (click)="scrollTo('contact', $event)" style="cursor:pointer">
           {{ i18n.t()['hero.cta2'] }}
         </a>
       </div>

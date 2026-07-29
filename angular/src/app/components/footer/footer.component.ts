@@ -9,7 +9,8 @@ import { I18nService } from '../../services/i18n.service';
 export class FooterComponent {
   i18n = inject(I18nService);
 
-  scrollTo(id: string) {
+  scrollTo(id: string, event?: Event) {
+    event?.preventDefault();
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 }
