@@ -420,10 +420,12 @@ export class I18nService {
   constructor() {
     const saved = (localStorage.getItem('lang') as Lang) || 'en';
     this.lang.set(saved);
+    document.documentElement.lang = saved;
   }
 
   toggle() {
     this.lang.update(l => l === 'en' ? 'hu' : 'en');
     localStorage.setItem('lang', this.lang());
+    document.documentElement.lang = this.lang();
   }
 }

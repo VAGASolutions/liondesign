@@ -30,6 +30,22 @@ describe('I18nService', () => {
     expect(localStorage.getItem('lang')).toBe('en');
   });
 
+  it('sets document.documentElement.lang on init to match the restored language', () => {
+    localStorage.setItem('lang', 'hu');
+    TestBed.inject(I18nService);
+    expect(document.documentElement.lang).toBe('hu');
+  });
+
+  it('updates document.documentElement.lang when toggling', () => {
+    const service = TestBed.inject(I18nService);
+
+    service.toggle();
+    expect(document.documentElement.lang).toBe('hu');
+
+    service.toggle();
+    expect(document.documentElement.lang).toBe('en');
+  });
+
   it('exposes the dictionary for the current language via t()', () => {
     const service = TestBed.inject(I18nService);
     expect(service.t()['nav.services']).toBe('Services');
