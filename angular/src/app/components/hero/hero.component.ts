@@ -15,7 +15,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
   private rafIds: number[] = [];
 
-  scrollTo(id: string) {
+  scrollTo(id: string, event?: Event) {
+    event?.preventDefault();
     this.doc.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 

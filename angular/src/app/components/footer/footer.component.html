@@ -5,28 +5,28 @@
         <div class="footer-brand-name">Lion<span>Design</span></div>
         <p class="footer-brand-desc">{{ i18n.t()['footer.desc'] }}</p>
         <div class="footer-social">
-          <a href="#" aria-label="Twitter">𝕏</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="Dribbble">⬤</a>
-          <a href="#" aria-label="GitHub">◆</a>
+          <a href="#"><span aria-hidden="true">𝕏</span><span class="sr-only">Twitter</span></a>
+          <a href="#"><span aria-hidden="true">in</span><span class="sr-only">LinkedIn</span></a>
+          <a href="#"><span aria-hidden="true">⬤</span><span class="sr-only">Dribbble</span></a>
+          <a href="#"><span aria-hidden="true">◆</span><span class="sr-only">GitHub</span></a>
         </div>
       </div>
 
       <div>
         <div class="footer-col-title">{{ i18n.t()['footer.col1'] }}</div>
         <ul class="footer-links">
-          <li><a (click)="scrollTo('services')">{{ i18n.t()['s1.title'] }}</a></li>
-          <li><a (click)="scrollTo('services')">{{ i18n.t()['s2.title'] }}</a></li>
-          <li><a (click)="scrollTo('services')">{{ i18n.t()['s3.title'] }}</a></li>
+          <li><a href="#services" (click)="scrollTo('services', $event)">{{ i18n.t()['s1.title'] }}</a></li>
+          <li><a href="#services" (click)="scrollTo('services', $event)">{{ i18n.t()['s2.title'] }}</a></li>
+          <li><a href="#services" (click)="scrollTo('services', $event)">{{ i18n.t()['s3.title'] }}</a></li>
         </ul>
       </div>
 
       <div>
         <div class="footer-col-title">{{ i18n.t()['footer.col2'] }}</div>
         <ul class="footer-links">
-          <li><a (click)="scrollTo('process')">{{ i18n.t()['footer.process'] }}</a></li>
-          <li><a (click)="scrollTo('portfolio')">{{ i18n.t()['footer.work'] }}</a></li>
-          <li><a (click)="scrollTo('contact')">{{ i18n.t()['nav.contact'] }}</a></li>
+          <li><a href="#process" (click)="scrollTo('process', $event)">{{ i18n.t()['footer.process'] }}</a></li>
+          <li><a href="#portfolio" (click)="scrollTo('portfolio', $event)">{{ i18n.t()['footer.work'] }}</a></li>
+          <li><a href="#contact" (click)="scrollTo('contact', $event)">{{ i18n.t()['nav.contact'] }}</a></li>
         </ul>
       </div>
 

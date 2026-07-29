@@ -35,7 +35,8 @@ export class NavComponent {
 
   toggleMenu() { this.menuOpen = !this.menuOpen; }
 
-  scrollTo(id: string) {
+  scrollTo(id: string, event?: Event) {
+    event?.preventDefault();
     this.menuOpen = false;
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
